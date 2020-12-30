@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  app:
+    image: 'medical-clinic:latest'
+    build:
+      context: .
+    container_name: 'medical-clinic'
+    ports:
+    - 8080:8080
