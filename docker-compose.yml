@@ -2,30 +2,33 @@ version: '3'
 
 services:
   db:
-    image: 'postgres:12.5'
+    image: 'postgres:13.1-alpine'
     container_name: db
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_DB=MedClinic
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123
-      
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_ROOT_PASSWORD=admin
       - ALLOW_IP_RANGE-0.0.0.0/0
     volumes:
       - ./src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/1-schema.sql
       - ./src/main/resources/db/data.sql:/docker-entrypoint-initdb.d/2-data.sql
-    ports:
-      - "5432:5432"
-  #app:
-    #image: 'medical-clinic:latest'
-    #build:
-      #context: .
-    #container_name: 'medical-clinic'
-    #ports:
-    #- 8080:8080
-    #environment:
-      #- SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/MedClinicDB
-      #- SPRING_DATASOURCE_USERNAME=postgres
-      #- SPRING_DATASOURCE_PASSWORD=123
-      #- SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    #depends_on:
-    #- db
+    restart: always
+
+#  app:
+#    image: 'medical-clinic:latest'
+#    build:
+#      context: .
+#    container_name: 'medical-clinic'
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://127.0.0.1:5432/MedClinic/postgres
+#      - SPRING_DATASOURCE_USERNAME=postgres
+#      - SPRING_DATASOURCE_PASSWORD=admin
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+#    depends_on:
+#    - db
+#    restart: always
