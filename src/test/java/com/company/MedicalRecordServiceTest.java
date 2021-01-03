@@ -19,7 +19,7 @@ public class MedicalRecordServiceTest {
 
     @Test
     public void findAllTest() {
-        var invoices = (List<MedicalRecord>) medicalRecordService.findAll();
-        System.out.println(invoices.get(0));
+        var medicalRecords = (List<MedicalRecord>) medicalRecordService.findAll();
+        System.out.println(medicalRecords.get(0));
     }
 }
