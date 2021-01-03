@@ -1,8 +1,6 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -15,13 +13,11 @@ public class Appointment {
     @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "room number cannot be empty!")
-    @NotEmpty(message = "room number cannot be empty!")
+    @NotNull(message = "Room number cannot be null")
     @Column(name = "room_number")
     private String roomNumber;
 
-    @NotBlank(message = "date cannot be empty!")
-    @NotEmpty(message = "date cannot be empty!")
+    @NotNull(message = "Date cannot be null")
     @Column(name = "date")
     private LocalDateTime date;
 
@@ -79,8 +75,8 @@ public class Appointment {
 
     public Appointment() {}
 
-    public Appointment(@NotNull final String roomNumber, @NotNull final LocalDateTime date,
-                       @NotNull final Patient patientId, @NotNull final Employee employeeId) {
+    public Appointment(final String roomNumber, final LocalDateTime date, final Patient patientId,
+                       final Employee employeeId) {
         this.roomNumber = roomNumber;
         this.date = date;
         this.patientId = patientId;

@@ -1,8 +1,6 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -22,9 +20,8 @@ public class Payment {
     @Column(name = "payment_status")
     private String paymentStatus;
 
-    @NotBlank(message = "total price cannot be empty!")
-    @NotEmpty(message = "payment method cannot be empty!")
-    @Column(name = "payment_method")
+    @NotNull(message = "total price cannot be null!")
+    @Column(name = "total_price")
     private float totalPrice;
 
     @OneToOne
@@ -124,8 +121,8 @@ public class Payment {
     public Payment() {}
 
     public Payment(final LocalDateTime date, final String paymentMethod, final String paymentStatus,
-                   @NotNull final float totalPrice, @NotNull final Patient patientId, final Company companyId,
-                   @NotNull final Employee employeeId, final Invoice invoiceId) {
+                    final float totalPrice,  final Patient patientId, final Company companyId,
+                    final Employee employeeId, final Invoice invoiceId) {
         this.date = date;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;

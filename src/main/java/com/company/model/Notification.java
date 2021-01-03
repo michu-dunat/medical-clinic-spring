@@ -1,8 +1,6 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -15,13 +13,11 @@ public class Notification {
     @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "Description cannot be empty!")
-    @NotEmpty(message = "Description cannot be empty!")
+    @NotNull(message = "Description cannot be null!")
     @Column(name = "description")
     private String description;
 
-    @NotBlank(message = "Date cannot be empty!")
-    @NotEmpty(message = "Date cannot be empty!")
+    @NotNull(message = "Date cannot be null!")
     @Column(name = "date")
     private LocalDateTime date;
 
@@ -30,7 +26,7 @@ public class Notification {
     @NotNull
     private Patient patientId;
 
-    public Notification(@NotNull final String description, @NotNull final LocalDateTime date, @NotNull final Patient patientId) {
+    public Notification(final String description, final LocalDateTime date, final Patient patientId) {
         this.description = description;
         this.date = date;
         this.patientId = patientId;
@@ -44,28 +40,28 @@ public class Notification {
         return id;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public Patient getPatientId() {
-        return patientId;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public LocalDateTime getDate() {
+        return date;
+    }
+
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public Patient getPatientId() {
+        return patientId;
     }
 
     public void setPatientId(Patient patientId) {

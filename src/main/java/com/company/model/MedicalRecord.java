@@ -30,8 +30,8 @@ public class MedicalRecord {
     @JoinColumn(name = "id")
     private Patient patient;
 
-    public MedicalRecord(int id, @NotNull(message = "Description cannot be null") String description, @NotNull(message = "Date cannot be null") LocalDateTime date, byte[] attachment, Patient patient) {
-        this.id = id;
+    public MedicalRecord(final String description, final LocalDateTime date, final byte[] attachment,
+                         final Patient patient) {
         this.description = description;
         this.date = date;
         this.attachment = attachment;

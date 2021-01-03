@@ -1,9 +1,10 @@
 package com.company.repositories;
 
-import com.company.model.Employee;
+import com.company.model.Invoice;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends CrudRepository<Employee, Long> {
+public interface InvoiceRepository extends CrudRepository<Invoice, Integer> {
+
 }

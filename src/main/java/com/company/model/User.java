@@ -1,8 +1,6 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -14,27 +12,25 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "Account`s login must not be empty!")
-    @NotEmpty(message = "Account`s login must not be empty!")
+    @NotNull(message = "Account`s login must not be null!")
     @Column(name = "username")
     private String username;
 
     @Column(name = "pesel")
     private String pesel;
 
-    @NotBlank(message = "Account`s password must not be empty!")
-    @NotEmpty(message = "Account`s password must not be empty!")
+    @NotNull(message = "Account`s password must not be null!")
     @Column(name = "password")
     private String password;
 
-    @NotBlank(message = "Role cannot be empty!")
-    @NotEmpty(message = "Role cannot be empty!")
+    @NotNull(message = "Role cannot be null!")
     @Column(name = "role")
     private String role;
 
-    public User(){}
+    public User() {
+    }
 
-    public User(@NotNull final String username, final String pesel, @NotNull final String password, @NotNull final String role) {
+    public User(final String username, final String pesel, final String password, final String role) {
         this.pesel = pesel;
         this.username = username;
         this.password = password;

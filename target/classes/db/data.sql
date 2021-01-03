@@ -54,17 +54,17 @@ INSERT INTO public.invoices (id, invoice) VALUES (4, '\x66696c653a2f2f2f443a2f46
 -- Data for Name: medical_records; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (2, 'no ogólnie to nie jest kolorowo', '2020-11-23', NULL, 1);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (1, 'Katar', '2020-11-20', NULL, 1);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (3, 'Kaszel', '2020-11-21', NULL, 4);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (4, 'Ból głowy', '2020-10-21', NULL, 6);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (5, 'Koronawirus', '2020-11-11', NULL, 8);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (6, 'Cukrzyca', '2020-11-19', '\x6174746163686d656e74', 9);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (7, 'Miażdżyca', '2020-11-29', '\x66696c65', 10);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (8, 'Zakażenie', '2020-10-29', '\x66696c65', 1);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (10, 'Coś tam', '2020-11-23', NULL, 6);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (9, 'Blabla', '2020-10-12', NULL, 2);
-INSERT INTO public.medical_records (id, description, date, attachment, patientsid) VALUES (11, 'Wątroba jak nowa', '2020-11-23', NULL, 6);
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (2, 'no ogólnie to nie jest kolorowo', '2020-11-23', NULL, 1, 'D001');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (1, 'Katar', '2020-11-20', NULL, 1, 'D001');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (3, 'Kaszel', '2020-11-21', NULL, 4, 'D001');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (4, 'Ból głowy', '2020-10-21', NULL, 6, 'D002');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (5, 'Koronawirus', '2020-11-11', NULL, 8, 'D001');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (6, 'Cukrzyca', '2020-11-19', '\x6174746163686d656e74', 9, 'D005');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (7, 'Miażdżyca', '2020-11-29', '\x66696c65', 10, 'D004');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (8, 'Zakażenie', '2020-10-29', '\x66696c65', 1, 'D001');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (10, 'Coś tam', '2020-11-23', NULL, 6, 'D003');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (9, 'Blabla', '2020-10-12', NULL, 2, 'D001');
+INSERT INTO public.medical_records (id, description, date, attachment, patientsid, employeesid) VALUES (11, 'Wątroba jak nowa', '2020-11-23', NULL, 6, 'D002');
 
 
 --
@@ -136,14 +136,14 @@ INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, 
 -- Data for Name: payments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (1, '2020-10-23', 'Cash', 'Success', 13, 2, NULL, 'CW001', NULL);
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (2, '2020-11-03', 'Credit card', 'Canceled', 34, 3, NULL, 'CW002', NULL);
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (3, '2020-11-08', 'Debit card', 'Rejected', 24, 5, NULL, 'CW001', NULL);
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (5, '2020-11-09', NULL, NULL, 4, 6, NULL, 'CW001', NULL);
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (6, '2020-11-11', 'Mobile payment', 'Pending', 53, 8, 1, 'CW001', 1);
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (7, '2020-11-14', 'Electronic bank transfer', 'Complete', 14, 2, 2, 'CW002', 2);
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (8, '2020-11-11', 'Mobile payment', 'Pending', 23, 1, NULL, 'CW001', NULL);
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (11, '2020-11-11', 'Mobile payment', 'Pending', 23, 2, NULL, 'CW002', NULL);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (1, '2020-10-23', 'Cash', 'Success', 13.0, 2, NULL, 'CW001', NULL);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (2, '2020-11-03', 'Credit card', 'Canceled', 34.0, 3, NULL, 'CW002', NULL);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (3, '2020-11-08', 'Debit card', 'Rejected', 24.0, 5, NULL, 'CW001', NULL);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (5, '2020-11-09', NULL, NULL, 4.0, 6, NULL, 'CW001', NULL);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (6, '2020-11-11', 'Mobile payment', 'Pending', 53.0, 8, 1, 'CW001', 1);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (7, '2020-11-14', 'Electronic bank transfer', 'Complete', 14.0, 2, 2, 'CW002', 2);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (8, '2020-11-11', 'Mobile payment', 'Pending', 23.0, 1, NULL, 'CW001', NULL);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (11, '2020-11-11', 'Mobile payment', 'Pending', 23.0, 2, NULL, 'CW002', NULL);
 
 
 --
@@ -485,6 +485,9 @@ ALTER TABLE ONLY public.employees
 
 ALTER TABLE ONLY public.medical_records
     ADD CONSTRAINT fkmedical_re344218 FOREIGN KEY (patientsid) REFERENCES public.patients(id) ON DELETE CASCADE;
+
+ALTER TABLE ONLY public.medical_records
+    ADD CONSTRAINT fkmedical_re133337 FOREIGN KEY (employeesid) REFERENCES public.employees(id) ON DELETE CASCADE;
 
 
 --

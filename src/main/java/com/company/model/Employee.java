@@ -1,8 +1,6 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -14,26 +12,22 @@ public class Employee {
     @Column(name = "id")
     private String id;
 
-    @NotBlank(message = "First name cannot be empty!")
-    @NotEmpty(message = "First name cannot be empty!")
+    @NotNull(message = "First name cannot be null!")
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank(message = "Last name cannot be empty!")
-    @NotEmpty(message = "Last name cannot be empty!")
+    @NotNull(message = "Last name cannot be null!")
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "license_id")
     private String licenseId;
 
-    @NotBlank(message = "Activity cannot be empty!")
-    @NotEmpty(message = "Activity cannot be empty!")
+    @NotNull(message = "Activity cannot be null!")
     @Column(name = "is_active")
     private boolean isActive;
 
-    @NotBlank(message = "Hire date cannot be empty!")
-    @NotEmpty(message = "Hire date cannot be empty!")
+    @NotNull(message = "Hire date cannot be null!")
     @Column(name = "hire_date")
     private LocalDateTime birthDate;
 
@@ -49,8 +43,7 @@ public class Employee {
     @Column(name = "postcode")
     private String postcode;
 
-    @NotBlank(message = "Phone number cannot be empty!")
-    @NotEmpty(message = "Phone number cannot be empty!")
+    @NotNull(message = "Phone number cannot be null!")
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -65,11 +58,10 @@ public class Employee {
     @Column(name = "specialisation")
     private String specialisation;
 
-    public Employee(@NotNull final String id, @NotNull final String firstName, @NotNull final String lastName, final String licenseId,
-                    @NotNull final boolean isActive, @NotNull final LocalDateTime birthDate,
-                    final float salary, final String address, final String city, final String postcode,
-                   @NotNull final String phoneNumber, final String emailAddress, @NotNull final User userId,
-                    final String specialisation) {
+    public Employee(final String id, final String firstName, final String lastName, final String licenseId,
+                    final boolean isActive, final LocalDateTime birthDate, final float salary, final String address,
+                    final String city, final String postcode, final String phoneNumber, final String emailAddress,
+                    final User userId, final String specialisation) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -94,108 +86,108 @@ public class Employee {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getLicenseId() {
-        return licenseId;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public LocalDateTime getBirthDate() {
-        return birthDate;
-    }
-
-    public float getSalary() {
-        return salary;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public String getPostcode() {
-        return postcode;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public String getSpecialisation() {
-        return specialisation;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getLicenseId() {
+        return licenseId;
     }
 
     public void setLicenseId(String licenseId) {
         this.licenseId = licenseId;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public LocalDateTime getBirthDate() {
+        return birthDate;
     }
 
     public void setBirthDate(LocalDateTime birthDate) {
         this.birthDate = birthDate;
     }
 
+    public float getSalary() {
+        return salary;
+    }
+
     public void setSalary(float salary) {
         this.salary = salary;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
+    public String getCity() {
+        return city;
+    }
+
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getPostcode() {
+        return postcode;
     }
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
+    public User getUserId() {
+        return userId;
+    }
+
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+    public String getSpecialisation() {
+        return specialisation;
     }
 
     public void setSpecialisation(String specialisation) {

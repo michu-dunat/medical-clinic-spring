@@ -207,6 +207,7 @@ CREATE TABLE public.medical_records (
     date date NOT NULL,
     attachment bytea,
     patientsid integer NOT NULL,
+    employeesid character varying(50) NOT NULL,
     CONSTRAINT medical_records_date CHECK ((date >= '1990-01-01'::date))
 );
 
@@ -322,7 +323,7 @@ CREATE TABLE public.payments (
     date date,
     payment_method character varying(100),
     payment_status character varying(50),
-    total_price integer NOT NULL,
+    total_price real NOT NULL,
     patientsid integer NOT NULL,
     companiesid integer,
     employeesid character varying(50) NOT NULL,

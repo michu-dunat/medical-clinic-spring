@@ -36,8 +36,13 @@ public class Order {
         this.id = id;
     }
 
-    @Id
     public String getId() {
         return id;
+    }
+
+    public Order() {}
+
+    public Order(List<Service> services) {
+        this.services = services;
     }
 }

@@ -1,8 +1,6 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -14,13 +12,11 @@ public class Prescription {
     @Column(name = "id")
     private String id;
 
-    @NotBlank(message = "date cannot be empty!")
-    @NotEmpty(message = "date cannot be empty!")
+    @NotNull(message = "date cannot be null!")
     @Column(name = "date")
     private LocalDateTime date;
 
-    @NotBlank(message = "description cannot be empty!")
-    @NotEmpty(message = "description cannot be empty!")
+    @NotNull(message = "description cannot be null!")
     @Column(name = "description")
     private String description;
 
@@ -35,6 +31,17 @@ public class Prescription {
     @JoinColumn(name = "id")
     @NotNull
     private Employee employeeId;
+
+    public Prescription() {
+    }
+
+    public Prescription(final LocalDateTime date, final String description,
+                        final Patient patientId, final Employee employeeId) {
+        this.date = date;
+        this.description = description;
+        this.patientId = patientId;
+        this.employeeId = employeeId;
+    }
 
     public String getId() {
         return id;
@@ -73,16 +80,6 @@ public class Prescription {
     }
 
     public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public Prescription() {}
-
-    public Prescription(@NotNull final LocalDateTime date, @NotNull final String description,
-                        @NotNull final Patient patientId, @NotNull final Employee employeeId) {
-        this.date = date;
-        this.description = description;
-        this.patientId = patientId;
         this.employeeId = employeeId;
     }
 }
