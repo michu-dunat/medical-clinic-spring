@@ -26,16 +26,21 @@ public class MedicalRecord {
 
     @NotNull
     @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Patient patient;
+    @JoinColumn(name = "patientsid")
+    private Patient patientId;
+
+    @ManyToOne
+    @JoinColumn(name = "employeesid")
+    @NotNull
+    private Employee employeeId;
 
     public MedicalRecord(final String description, final LocalDateTime date, final byte[] attachment,
-                         final Patient patient) {
+                         final Patient patientId, final Employee employeeId) {
         this.description = description;
         this.date = date;
         this.attachment = attachment;
-        this.patient = patient;
+        this.patientId = patientId;
+        this.employeeId = employeeId;
     }
 
     public MedicalRecord() {}
@@ -72,14 +77,16 @@ public class MedicalRecord {
         this.attachment = attachment;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Patient getPatientId() {
+        return patientId;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientId(Patient patient) {
+        this.patientId = patient;
     }
 
+    public Employee getEmployeeId() {return employeeId;}
 
+    public void setEmployeeId(Employee employeeId) {this.employeeId = employeeId;}
 }
 
