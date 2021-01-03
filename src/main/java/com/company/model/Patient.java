@@ -59,14 +59,14 @@ public class Patient {
     @Column(name = "email_address")
     private String emailAddress;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
+    @OneToOne
+    @JoinColumn(name = "usersid")
     @NotNull
     private User userId;
 
     @NotNull(message = "notification status cannot be null!")
     @Column(name = "notifications_status")
-    private boolean notificationStatus;
+    private Boolean notificationStatus;
 
     public Patient() {}
 
@@ -204,11 +204,11 @@ public class Patient {
         this.userId = userId;
     }
 
-    public boolean isNotificationStatus() {
+    public Boolean isNotificationStatus() {
         return notificationStatus;
     }
 
-    public void setNotificationStatus(boolean notificationStatus) {
+    public void setNotificationStatus(Boolean notificationStatus) {
         this.notificationStatus = notificationStatus;
     }
 }

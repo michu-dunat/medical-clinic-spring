@@ -1,7 +1,7 @@
 package com.company;
 
-import com.company.model.User;
-import com.company.services.UserService;
+import com.company.model.Employee;
+import com.company.services.EmployeeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +12,15 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceTest {
+public class EmployeeServiceTest {
 
     @Autowired
-    private UserService userService;
+    private EmployeeService employeeService;
 
     @Test
     public void findAllTest() {
-        var users = (List<User>) userService.findAll();
-        System.out.println(users.get(0));
+        var employees = (List<Employee>) employeeService.findAll();
+        System.out.println(employees.get(0).getBirthDate());
     }
 }
+

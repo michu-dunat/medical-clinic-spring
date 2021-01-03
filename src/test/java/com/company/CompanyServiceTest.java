@@ -1,6 +1,7 @@
 package com.company;
 
-import com.company.model.User;
+import com.company.model.Company;
+import com.company.services.CompanyService;
 import com.company.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,14 +13,14 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceTest {
+public class CompanyServiceTest {
 
     @Autowired
-    private UserService userService;
+    private CompanyService companyService;
 
     @Test
     public void findAllTest() {
-        var users = (List<User>) userService.findAll();
-        System.out.println(users.get(0));
+        var companies = (List<Company>) companyService.findAll();
+        System.out.println(companies.get(0).getCompanyName());
     }
 }
