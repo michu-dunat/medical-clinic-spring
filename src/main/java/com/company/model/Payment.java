@@ -1,11 +1,11 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "payments")
 public class Payment {
 
     @Id
@@ -22,32 +22,31 @@ public class Payment {
     @Column(name = "payment_status")
     private String paymentStatus;
 
-    @NotBlank(message = "total price cannot be empty!")
-    @NotEmpty(message = "payment method cannot be empty!")
-    @Column(name = "payment_method")
+    @NotNull(message = "total price cannot be null!")
+    @Column(name = "total_price")
     private float totalPrice;
 
     @OneToOne
     @MapsId
     @JoinColumn(name = "id")
     @NotNull
-    private Patient patientId;
+    private Patient patient;
 
     @ManyToOne
     @MapsId
     @JoinColumn(name = "id")
-    private Company companyId;
+    private Company company;
 
     @ManyToOne
     @MapsId
     @JoinColumn(name = "id")
     @NotNull
-    private Employee employeeId;
+    private Employee employee;
 
     @ManyToOne
     @MapsId
     @JoinColumn(name = "id")
-    private Invoice invoiceId;
+    private Invoice invoice;
 
     public int getId() {
         return id;
@@ -89,50 +88,50 @@ public class Payment {
         this.totalPrice = totalPrice;
     }
 
-    public Patient getPatientId() {
-        return patientId;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientId(Patient patientId) {
-        this.patientId = patientId;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
-    public Company getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Employee getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public Invoice getInvoiceId() {
-        return invoiceId;
+    public Invoice getInvoice() {
+        return invoice;
     }
 
-    public void setInvoiceId(Invoice invoiceId) {
-        this.invoiceId = invoiceId;
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     public Payment() {}
 
     public Payment(final LocalDateTime date, final String paymentMethod, final String paymentStatus,
-                   @NotNull final float totalPrice, @NotNull final Patient patientId, final Company companyId,
-                   @NotNull final Employee employeeId, final Invoice invoiceId) {
+                    final float totalPrice,  final Patient patientId, final Company companyId,
+                    final Employee employeeId, final Invoice invoiceId) {
         this.date = date;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
         this.totalPrice = totalPrice;
-        this.patientId = patientId;
-        this.companyId = companyId;
-        this.employeeId = employeeId;
-        this.invoiceId = invoiceId;
+        this.patient = patientId;
+        this.company = companyId;
+        this.employee = employeeId;
+        this.invoice = invoiceId;
     }
 }

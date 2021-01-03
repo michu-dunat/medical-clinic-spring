@@ -1,8 +1,7 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -14,8 +13,7 @@ public class Service {
     @Column(name = "id")
     private int id;
 
-    @NotEmpty(message =  "Service name cannot be empty!")
-    @NotBlank(message = "Service name cannot be empty!")
+    @NotNull(message = "Service name cannot be null!")
     @Column(name = "service_name")
     private String serviceName;
 
@@ -25,8 +23,16 @@ public class Service {
     @Column(name = "service_description")
     private String serviceDescription;
 
-    @ManyToMany(mappedBy = "orders")
+    @ManyToMany(mappedBy = "services")
     private List<Order> orders;
+
+    public Service() {}
+
+    public Service(final String serviceName, final float price, final String serviceDescription) {
+        this.serviceName = serviceName;
+        this.price = price;
+        this.serviceDescription = serviceDescription;
+    }
 
     public List<Order> getOrders() {
         return orders;
@@ -34,10 +40,6 @@ public class Service {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
-    }
-
-    public Service() {
-
     }
 
     public int getId() {
@@ -69,13 +71,6 @@ public class Service {
     }
 
     public void setServiceDescription(String serviceDescription) {
-        this.serviceDescription = serviceDescription;
-    }
-
-    public Service(int id, @NotEmpty(message = "Service name cannot be empty!") @NotBlank(message = "Service name cannot be empty!") String serviceName, float price, String serviceDescription) {
-        this.id = id;
-        this.serviceName = serviceName;
-        this.price = price;
         this.serviceDescription = serviceDescription;
     }
 }

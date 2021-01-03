@@ -1,8 +1,6 @@
 package com.company.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
@@ -15,36 +13,30 @@ public class Patient {
     @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "first name cannot be empty!")
-    @NotEmpty(message = "first name cannot be empty!")
+    @NotNull(message = "first name cannot be null!")
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank(message = "last name cannot be empty!")
-    @NotEmpty(message = "last name cannot be empty!")
+    @NotNull(message = "last name cannot be null!")
     @Column(name = "last_name")
     private String lastName;
 
-    @NotBlank(message = "birth date cannot be empty!")
-    @NotEmpty(message = "birth date cannot be empty!")
+    @NotNull(message = "birth date cannot be null!")
     @Column(name = "birth_date")
     private LocalDateTime birthDate;
 
     @Column(name = "blood_type")
     private String bloodType;
 
-    @NotBlank(message = "address cannot be empty!")
-    @NotEmpty(message = "address cannot be empty!")
+    @NotNull(message = "address cannot be null!")
     @Column(name = "address")
     private String address;
 
-    @NotBlank(message = "city cannot be empty!")
-    @NotEmpty(message = "city cannot be empty!")
+    @NotNull(message = "city cannot be null!")
     @Column(name = "city")
     private String city;
 
-    @NotBlank(message = "postcode cannot be empty!")
-    @NotEmpty(message = "postcode cannot be empty!")
+    @NotNull(message = "postcode cannot be null!")
     @Column(name = "postcode")
     private String postcode;
 
@@ -57,8 +49,7 @@ public class Patient {
     @Column(name = "permanent_postcode")
     private String permanentPostcode;
 
-    @NotBlank(message = "phone number cannot be empty!")
-    @NotEmpty(message = "phone number cannot be empty!")
+    @NotNull(message = "phone number cannot be null!")
     @Column(name = "phone_number")
     private String phoneNumber;
 
@@ -73,10 +64,33 @@ public class Patient {
     @NotNull
     private User userId;
 
-    @NotBlank(message = "notification status cannot be empty!")
-    @NotEmpty(message = "notification status cannot be empty!")
+    @NotNull(message = "notification status cannot be null!")
     @Column(name = "notifications_status")
     private boolean notificationStatus;
+
+    public Patient() {}
+
+    public Patient(final String firstName, final String lastName, final LocalDateTime birthDate,
+                   final String bloodType, final String address, final String city, final String postcode,
+                   final String permanentAddress, final String permanentCity, final String permanentPostcode,
+                   final String phoneNumber, final String contactPhone, final String emailAddress,
+                   final User userId, final Boolean notificationStatus) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.bloodType = bloodType;
+        this.address = address;
+        this.city = city;
+        this.postcode = postcode;
+        this.permanentAddress = permanentAddress;
+        this.permanentCity = permanentCity;
+        this.permanentPostcode = permanentPostcode;
+        this.phoneNumber = phoneNumber;
+        this.contactPhone = contactPhone;
+        this.emailAddress = emailAddress;
+        this.userId = userId;
+        this.notificationStatus = notificationStatus;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -195,32 +209,6 @@ public class Patient {
     }
 
     public void setNotificationStatus(boolean notificationStatus) {
-        this.notificationStatus = notificationStatus;
-    }
-
-
-
-    public Patient(){}
-
-    public Patient(@NotNull final String firstName, @NotNull final String lastName, @NotNull final LocalDateTime birthDate,
-                   final String bloodType, @NotNull final String address, @NotNull final String city, @NotNull final String postcode,
-                   final String permanentAddress, final String permanentCity, final String permanentPostcode,
-                   @NotNull final String phoneNumber, final String contactPhone, final String emailAddress,
-                   @NotNull final User userId, @NotNull final Boolean notificationStatus){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this. birthDate = birthDate;
-        this.bloodType = bloodType;
-        this.address = address;
-        this.city = city;
-        this.postcode = postcode;
-        this.permanentAddress = permanentAddress;
-        this.permanentCity = permanentCity;
-        this.permanentPostcode = permanentPostcode;
-        this.phoneNumber = phoneNumber;
-        this.contactPhone = contactPhone;
-        this.emailAddress = emailAddress;
-        this.userId = userId;
         this.notificationStatus = notificationStatus;
     }
 }
