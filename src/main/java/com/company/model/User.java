@@ -19,8 +19,6 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @NotEmpty(message = "PESEL must not be empty!")
-    @NotBlank(message = "PESEL must not be empty!")
     @Column(name = "pesel")
     private String pesel;
 
@@ -36,7 +34,7 @@ public class User {
 
     public User(){}
 
-    public User(@NotNull final String username, @NotNull final String pesel, @NotNull final String password, @NotNull final String role) {
+    public User(@NotNull final String username, final String pesel, @NotNull final String password, @NotNull final String role) {
         this.pesel = pesel;
         this.username = username;
         this.password = password;

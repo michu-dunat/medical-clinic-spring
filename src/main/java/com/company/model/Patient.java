@@ -48,18 +48,12 @@ public class Patient {
     @Column(name = "postcode")
     private String postcode;
 
-    @NotBlank(message = "permanent address cannot be empty!")
-    @NotEmpty(message = "permanent address cannot be empty!")
     @Column(name = "permanent_address")
     private String permanentAddress;
 
-    @NotBlank(message = " cannot be empty!")
-    @NotEmpty(message = " cannot be empty!")
     @Column(name = "pemanent_city")
     private String permanentCity;
 
-    @NotBlank(message = "permaanent postcode cannot be empty!")
-    @NotEmpty(message = "permanent postcode cannot be empty!")
     @Column(name = "permanent_postcode")
     private String permanentPostcode;
 
@@ -68,15 +62,21 @@ public class Patient {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @NotBlank(message = "contact phone cannot be empty!")
-    @NotEmpty(message = "contact phone cannot be empty!")
     @Column(name = "contact_phone")
     private String contactPhone;
 
-    @NotBlank(message = "email address cannot be empty!")
-    @NotEmpty(message = "email address cannot be empty!")
     @Column(name = "email_address")
     private String emailAddress;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @MapsId
+    @NotNull
+    private User userId;
+
+    @NotBlank(message = "notification status cannot be empty!")
+    @NotEmpty(message = "notification status cannot be empty!")
+    @Column(name = "notifications_status")
+    private boolean notificationStatus;
 
     public String getFirstName() {
         return firstName;
@@ -198,22 +198,14 @@ public class Patient {
         this.notificationStatus = notificationStatus;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
-    @NotNull
-    private User userId;
 
-    @NotBlank(message = "notification status cannot be empty!")
-    @NotEmpty(message = "notification status cannot be empty!")
-    @Column(name = "notifications_status")
-    private boolean notificationStatus;
 
     public Patient(){}
 
     public Patient(@NotNull final String firstName, @NotNull final String lastName, @NotNull final LocalDateTime birthDate,
                    final String bloodType, @NotNull final String address, @NotNull final String city, @NotNull final String postcode,
-                   @NotNull final String permanentAddress, @NotNull final String permanentCity, @NotNull final String permanentPostcode,
-                   @NotNull final String phoneNumber, @NotNull final String contactPhone, @NotNull final String emailAddress,
+                   final String permanentAddress, final String permanentCity, final String permanentPostcode,
+                   @NotNull final String phoneNumber, final String contactPhone, final String emailAddress,
                    @NotNull final User userId, @NotNull final Boolean notificationStatus){
         this.firstName = firstName;
         this.lastName = lastName;
