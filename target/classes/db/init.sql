@@ -415,5 +415,5 @@ ALTER TABLE ONLY public.services ALTER COLUMN id SET DEFAULT nextval('public.ser
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
-ALTER SYSTEM SET listen_addresses = '127.0.0.1';
+ALTER SYSTEM SET listen_addresses = '*';
 

@@ -1,5 +1,4 @@
-package com.company.models;
-import org.springframework.lang.Nullable;
+package com.company.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
