@@ -3,6 +3,7 @@ package com.company.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
@@ -54,6 +55,12 @@ public class Employee {
     @JoinColumn(name = "usersid")
     @NotNull
     private User userId;
+
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+    private List<Appointment> appointment;
+
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+    private  List<MedicalRecord> medicalRecords;
 
     @Column(name = "specialisation")
     private String specialisation;

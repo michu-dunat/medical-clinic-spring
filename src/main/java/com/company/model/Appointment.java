@@ -22,12 +22,12 @@ public class Appointment {
     private LocalDateTime date;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "patientsid")
     @NotNull
     private Patient patientId;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "employeesid")
     @NotNull
     private Employee employeeId;
 
