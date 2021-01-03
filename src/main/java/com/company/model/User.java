@@ -27,6 +27,12 @@ public class User {
     @Column(name = "role")
     private String role;
 
+    @OneToOne(mappedBy = "userId", cascade = CascadeType.ALL)
+    private Patient patient;
+
+    @OneToOne(mappedBy = "userId", cascade = CascadeType.ALL)
+    private Employee employee;
+
     public User() {}
 
     public User(final String username, final String pesel, final String password, final String role) {
@@ -75,5 +81,17 @@ public class User {
 
     public void setPesel(String pesel) {
         this.pesel = pesel;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", pesel='" + pesel + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", patient=" + patient +
+                '}';
     }
 }

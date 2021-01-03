@@ -25,14 +25,14 @@ public class Employee {
 
     @NotNull(message = "Activity cannot be null!")
     @Column(name = "is_active")
-    private boolean isActive;
+    private Boolean isActive;
 
     @NotNull(message = "Hire date cannot be null!")
     @Column(name = "hire_date")
     private LocalDateTime birthDate;
 
     @Column(name = "salary")
-    private float salary;
+    private Float salary;
 
     @Column(name = "address")
     private String address;
@@ -50,8 +50,8 @@ public class Employee {
     @Column(name = "email_address")
     private String emailAddress;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @MapsId
+    @OneToOne
+    @JoinColumn(name = "usersid")
     @NotNull
     private User userId;
 
@@ -59,7 +59,7 @@ public class Employee {
     private String specialisation;
 
     public Employee(final String id, final String firstName, final String lastName, final String licenseId,
-                    final boolean isActive, final LocalDateTime birthDate, final float salary, final String address,
+                    final Boolean isActive, final LocalDateTime birthDate, final Float salary, final String address,
                     final String city, final String postcode, final String phoneNumber, final String emailAddress,
                     final User userId, final String specialisation) {
         this.id = id;
@@ -78,7 +78,7 @@ public class Employee {
         this.specialisation = specialisation;
     }
 
-    //public Employee() {}
+    public Employee() {}
 
     public String getId() {
         return id;
@@ -112,11 +112,11 @@ public class Employee {
         this.licenseId = licenseId;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 
@@ -128,11 +128,11 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
-    public float getSalary() {
+    public Float getSalary() {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(Float salary) {
         this.salary = salary;
     }
 
