@@ -3,6 +3,7 @@ package com.company.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "patients")
@@ -63,6 +64,9 @@ public class Patient {
     @JoinColumn(name = "usersid")
     @NotNull
     private User userId;
+
+    @OneToMany(mappedBy = "")
+    private List<MedicalRecord> medicalRecords;
 
     @NotNull(message = "notification status cannot be null!")
     @Column(name = "notifications_status")
