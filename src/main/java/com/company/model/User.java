@@ -27,8 +27,7 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    public User() {
-    }
+    public User() {}
 
     public User(final String username, final String pesel, final String password, final String role) {
         this.pesel = pesel;

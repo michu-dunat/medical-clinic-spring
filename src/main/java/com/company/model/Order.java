@@ -13,7 +13,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private int id;
 
     @NotNull
     @ManyToMany(cascade = {CascadeType.ALL})
@@ -32,17 +32,17 @@ public class Order {
         this.services = services;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     public Order() {}
 
-    public Order(List<Service> services) {
-        this.services = services;
-    }
+//    public Order(List<Service> services) {
+//        this.services = services;
+//    }
 }

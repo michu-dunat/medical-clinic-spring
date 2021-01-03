@@ -78,9 +78,7 @@ public class Employee {
         this.specialisation = specialisation;
     }
 
-    public Employee() {
-
-    }
+    //public Employee() {}
 
     public String getId() {
         return id;

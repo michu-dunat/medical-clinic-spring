@@ -1,10 +1,10 @@
 package com.company.repositories;
 
 import com.company.model.Invoice;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InvoiceRepository extends CrudRepository<Invoice, Integer> {
+public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
 
 }

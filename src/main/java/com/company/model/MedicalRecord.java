@@ -38,9 +38,7 @@ public class MedicalRecord {
         this.patient = patient;
     }
 
-    public MedicalRecord() {
-
-    }
+    public MedicalRecord() {}
 
     public int getId() {
         return id;

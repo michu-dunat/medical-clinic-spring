@@ -23,12 +23,10 @@ public class Service {
     @Column(name = "service_description")
     private String serviceDescription;
 
-    @ManyToMany(mappedBy = "orders")
+    @ManyToMany(mappedBy = "services")
     private List<Order> orders;
 
-    public Service() {
-
-    }
+    public Service() {}
 
     public Service(final String serviceName, final float price, final String serviceDescription) {
         this.serviceName = serviceName;

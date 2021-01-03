@@ -42,9 +42,7 @@ public class Company {
         this.postcode = postcode;
     }
 
-    public Company() {
-
-    }
+    public Company() {}
 
     public int getId() {
         return id;

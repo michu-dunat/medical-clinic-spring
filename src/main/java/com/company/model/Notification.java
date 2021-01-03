@@ -21,9 +21,10 @@ public class Notification {
     @Column(name = "date")
     private LocalDateTime date;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     @MapsId
-    @NotNull
+    @JoinColumn(name = "id")
     private Patient patientId;
 
     public Notification(final String description, final LocalDateTime date, final Patient patientId) {
@@ -32,9 +33,7 @@ public class Notification {
         this.patientId = patientId;
     }
 
-    public Notification() {
-
-    }
+    public Notification() {}
 
     public int getId() {
         return id;

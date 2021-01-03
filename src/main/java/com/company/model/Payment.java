@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "payments")
 public class Payment {
 
     @Id
@@ -28,23 +30,23 @@ public class Payment {
     @MapsId
     @JoinColumn(name = "id")
     @NotNull
-    private Patient patientId;
+    private Patient patient;
 
     @ManyToOne
     @MapsId
     @JoinColumn(name = "id")
-    private Company companyId;
+    private Company company;
 
     @ManyToOne
     @MapsId
     @JoinColumn(name = "id")
     @NotNull
-    private Employee employeeId;
+    private Employee employee;
 
     @ManyToOne
     @MapsId
     @JoinColumn(name = "id")
-    private Invoice invoiceId;
+    private Invoice invoice;
 
     public int getId() {
         return id;
@@ -86,36 +88,36 @@ public class Payment {
         this.totalPrice = totalPrice;
     }
 
-    public Patient getPatientId() {
-        return patientId;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientId(Patient patientId) {
-        this.patientId = patientId;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
-    public Company getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public Employee getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public Invoice getInvoiceId() {
-        return invoiceId;
+    public Invoice getInvoice() {
+        return invoice;
     }
 
-    public void setInvoiceId(Invoice invoiceId) {
-        this.invoiceId = invoiceId;
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 
     public Payment() {}
@@ -127,9 +129,9 @@ public class Payment {
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
         this.totalPrice = totalPrice;
-        this.patientId = patientId;
-        this.companyId = companyId;
-        this.employeeId = employeeId;
-        this.invoiceId = invoiceId;
+        this.patient = patientId;
+        this.company = companyId;
+        this.employee = employeeId;
+        this.invoice = invoiceId;
     }
 }

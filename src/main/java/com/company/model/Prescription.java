@@ -32,8 +32,7 @@ public class Prescription {
     @NotNull
     private Employee employeeId;
 
-    public Prescription() {
-    }
+    public Prescription() {}
 
     public Prescription(final LocalDateTime date, final String description,
                         final Patient patientId, final Employee employeeId) {

@@ -68,8 +68,7 @@ public class Patient {
     @Column(name = "notifications_status")
     private boolean notificationStatus;
 
-    public Patient() {
-    }
+    public Patient() {}
 
     public Patient(final String firstName, final String lastName, final LocalDateTime birthDate,
                    final String bloodType, final String address, final String city, final String postcode,
