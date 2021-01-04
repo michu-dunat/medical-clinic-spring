@@ -22,4 +22,13 @@ public class AppointmentServiceTest {
         var appointments = (List<Appointment>) appointmentService.findAll();
         System.out.println(appointments.get(0));
     }
+
+    @Test
+    public void findByEmployeeId() {
+        var appointments = appointmentService.findAppointmentByEmployee();
+        for (Appointment appointment:
+             appointments) {
+            System.out.println(appointment.toString());
+        }
+    }
 }

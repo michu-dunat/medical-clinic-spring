@@ -17,7 +17,7 @@ public class User {
     private String username;
 
     @Column(name = "pesel")
-    private String pesel;
+    private Long pesel;
 
     @NotNull(message = "Account`s password must not be null!")
     @Column(name = "password")
@@ -35,7 +35,7 @@ public class User {
 
     public User() {}
 
-    public User(final String username, final String pesel, final String password, final String role) {
+    public User(final String username, final Long pesel, final String password, final String role) {
         this.pesel = pesel;
         this.username = username;
         this.password = password;
@@ -75,11 +75,11 @@ public class User {
         this.id = id;
     }
 
-    public String getPesel() {
+    public Long getPesel() {
         return pesel;
     }
 
-    public void setPesel(String pesel) {
+    public void setPesel(Long pesel) {
         this.pesel = pesel;
     }
 
@@ -91,7 +91,6 @@ public class User {
                 ", pesel='" + pesel + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
-                ", patient=" + patient +
                 '}';
     }
 }

@@ -73,4 +73,14 @@ public class Service {
     public void setServiceDescription(String serviceDescription) {
         this.serviceDescription = serviceDescription;
     }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "id=" + id +
+                ", serviceName='" + serviceName + '\'' +
+                ", price=" + price +
+                ", serviceDescription='" + serviceDescription + '\'' +
+                '}';
+    }
 }

@@ -87,4 +87,14 @@ public class Order {
     }
 
     public Order() {}
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", paymentId=" + paymentId.getId() +
+                ", patientId=" + patientId.getId() +
+                ", employeeId=" + employeeId.getId() +
+                '}';
+    }
 }
