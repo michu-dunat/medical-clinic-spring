@@ -65,7 +65,7 @@ public class Patient {
     @NotNull
     private User userId;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "patientId")
     private List<MedicalRecord> medicalRecords;
 
     @NotNull(message = "notification status cannot be null!")
