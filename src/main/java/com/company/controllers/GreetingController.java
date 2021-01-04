@@ -1,4 +1,4 @@
-/*package com.company.controllers;
+package com.company.controllers;
 
 import com.company.model.User;
 import com.company.services.UserService;
@@ -25,4 +25,3 @@ public class GreetingController {
         return "greeting";
     }
 }
-*/
