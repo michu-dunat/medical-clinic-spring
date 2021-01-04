@@ -21,14 +21,12 @@ public class Prescription {
     private String description;
 
     @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "patientsid")
     @NotNull
     private Patient patientId;
 
     @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "employeesid")
     @NotNull
     private Employee employeeId;
 

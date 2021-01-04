@@ -26,26 +26,22 @@ public class Payment {
     @Column(name = "total_price")
     private float totalPrice;
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @ManyToOne
+    @JoinColumn(name = "patientsid")
     @NotNull
-    private Patient patient;
+    private Patient patientId;
 
     @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "companiesid")
     private Company company;
 
     @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "employeesid")
     @NotNull
     private Employee employee;
 
-    @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @OneToOne
+    @JoinColumn(name = "invoicesid")
     private Invoice invoice;
 
     public int getId() {
@@ -88,12 +84,12 @@ public class Payment {
         this.totalPrice = totalPrice;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Patient getPatientId() {
+        return patientId;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientId(Patient patient) {
+        this.patientId = patient;
     }
 
     public Company getCompany() {
@@ -129,7 +125,7 @@ public class Payment {
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
         this.totalPrice = totalPrice;
-        this.patient = patientId;
+        this.patientId = patientId;
         this.company = companyId;
         this.employee = employeeId;
         this.invoice = invoiceId;
