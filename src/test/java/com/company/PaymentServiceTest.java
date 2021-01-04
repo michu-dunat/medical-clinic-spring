@@ -1,7 +1,7 @@
 package com.company;
 
-import com.company.model.MedicalRecord;
-import com.company.services.MedicalRecordService;
+import com.company.model.Payment;
+import com.company.services.PaymentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +12,14 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MedicalRecordServiceTest {
+public class PaymentServiceTest {
 
     @Autowired
-    private MedicalRecordService medicalRecordService;
+    private PaymentService paymentService;
 
     @Test
     public void findAllTest() {
-        var invoices = (List<MedicalRecord>) medicalRecordService.findAll();
-        System.out.println(invoices.get(0));
+        var payments = (List<Payment>) paymentService.findAll();
+        System.out.println(payments.get(0).getPaymentMethod());
     }
 }

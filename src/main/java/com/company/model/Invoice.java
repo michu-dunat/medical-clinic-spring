@@ -3,6 +3,8 @@ package com.company.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table(name = "invoices")
@@ -16,6 +18,9 @@ public class Invoice {
     @NotNull(message = "Invoice cannot be null")
     @Column(name = "invoice")
     private byte[] invoice;
+
+    @OneToOne(mappedBy = "invoiceId", cascade = CascadeType.ALL)
+    private Payment payments;
 
     public int getId() {
         return id;
@@ -37,5 +42,13 @@ public class Invoice {
 
     public Invoice(final byte[] invoice) {
         this.invoice = invoice;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "id=" + id +
+                ", invoice=" + Arrays.toString(invoice) +
+                '}';
     }
 }

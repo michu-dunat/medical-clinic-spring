@@ -21,14 +21,12 @@ public class Prescription {
     private String description;
 
     @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "patientsid")
     @NotNull
     private Patient patientId;
 
     @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "employeesid")
     @NotNull
     private Employee employeeId;
 
@@ -80,5 +78,16 @@ public class Prescription {
 
     public void setEmployeeId(Employee employeeId) {
         this.employeeId = employeeId;
+    }
+
+    @Override
+    public String toString() {
+        return "Prescription{" +
+                "id='" + id + '\'' +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                ", patientId=" + patientId.getId() +
+                ", employeeId=" + employeeId.getId() +
+                '}';
     }
 }

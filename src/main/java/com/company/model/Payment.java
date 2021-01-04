@@ -26,27 +26,26 @@ public class Payment {
     @Column(name = "total_price")
     private float totalPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "patientsid")
+    @NotNull
+    private Patient patientId;
+
+    @ManyToOne
+    @JoinColumn(name = "companiesid")
+    private Company companyId;
+
+    @ManyToOne
+    @JoinColumn(name = "employeesid")
+    @NotNull
+    private Employee employeeId;
+
     @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    @NotNull
-    private Patient patient;
+    @JoinColumn(name = "invoicesid")
+    private Invoice invoiceId;
 
-    @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Company company;
-
-    @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    @NotNull
-    private Employee employee;
-
-    @ManyToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Invoice invoice;
+    @OneToOne(mappedBy = "paymentId", cascade = CascadeType.ALL)
+    private Order order;
 
     public int getId() {
         return id;
@@ -88,36 +87,36 @@ public class Payment {
         this.totalPrice = totalPrice;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Patient getPatientId() {
+        return patientId;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatientId(Patient patient) {
+        this.patientId = patient;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyId(Company company) {
+        this.companyId = company;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Employee getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(Employee employee) {
+        this.employeeId = employee;
     }
 
-    public Invoice getInvoice() {
-        return invoice;
+    public Invoice getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
+    public void setInvoiceId(Invoice invoice) {
+        this.invoiceId = invoice;
     }
 
     public Payment() {}
@@ -129,9 +128,24 @@ public class Payment {
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
         this.totalPrice = totalPrice;
-        this.patient = patientId;
-        this.company = companyId;
-        this.employee = employeeId;
-        this.invoice = invoiceId;
+        this.patientId = patientId;
+        this.companyId = companyId;
+        this.employeeId = employeeId;
+        this.invoiceId = invoiceId;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", date=" + date +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", paymentStatus='" + paymentStatus + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", patientId=" + patientId.getId() +
+                ", companyId=" + companyId.getId() +
+                ", employeeId=" + employeeId.getId() +
+                ", invoiceId=" + invoiceId.getId() +
+                '}';
     }
 }

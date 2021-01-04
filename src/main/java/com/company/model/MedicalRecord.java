@@ -3,6 +3,7 @@ package com.company.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "medical_records")
@@ -88,5 +89,17 @@ public class MedicalRecord {
     public Employee getEmployeeId() {return employeeId;}
 
     public void setEmployeeId(Employee employeeId) {this.employeeId = employeeId;}
+
+    @Override
+    public String toString() {
+        return "MedicalRecord{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", attachment=" + Arrays.toString(attachment) +
+                ", patientId=" + patientId.getId() +
+                ", employeeId=" + employeeId.getId() +
+                '}';
+    }
 }
 

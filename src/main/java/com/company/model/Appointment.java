@@ -80,4 +80,15 @@ public class Appointment {
         this.patientId = patientId;
         this.employeeId = employeeId;
     }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", roomNumber='" + roomNumber + '\'' +
+                ", date=" + date +
+                ", patientId=" + patientId.getId() +
+                ", employeeId=" + employeeId.getId() +
+                '}';
+    }
 }

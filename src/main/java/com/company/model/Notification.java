@@ -66,4 +66,14 @@ public class Notification {
     public void setPatientId(Patient patientId) {
         this.patientId = patientId;
     }
+
+    @Override
+    public String toString() {
+        return "Notification{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", patientId=" + patientId.getId() +
+                '}';
+    }
 }

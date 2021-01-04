@@ -68,11 +68,27 @@ public class Patient {
     @OneToMany(mappedBy = "patientId")
     private List<MedicalRecord> medicalRecords;
 
+    @OneToMany(mappedBy = "patientId")
+    private List<Notification> notifications;
+
+    @OneToMany(mappedBy = "patientId")
+    private List<Appointment> appointments;
+
+    @OneToMany(mappedBy = "patientId")
+    private List<Prescription> prescriptions;
+
+    @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL)
+    private List<Payment> payments;
+
+    @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL)
+    private List<Order> orders;
+
     @NotNull(message = "notification status cannot be null!")
     @Column(name = "notifications_status")
     private Boolean notificationStatus;
 
-    public Patient() {}
+    public Patient() {
+    }
 
     public Patient(final String firstName, final String lastName, final LocalDateTime birthDate,
                    final String bloodType, final String address, final String city, final String postcode,
@@ -214,6 +230,36 @@ public class Patient {
 
     public void setNotificationStatus(Boolean notificationStatus) {
         this.notificationStatus = notificationStatus;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", bloodType='" + bloodType + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", permanentAddress='" + permanentAddress + '\'' +
+                ", permanentCity='" + permanentCity + '\'' +
+                ", permanentPostcode='" + permanentPostcode + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", contactPhone='" + contactPhone + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", userId=" + userId.getId() +
+                ", notificationStatus=" + notificationStatus +
+                '}';
     }
 }
 

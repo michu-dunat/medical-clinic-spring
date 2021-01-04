@@ -62,6 +62,15 @@ public class Employee {
     @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
     private  List<MedicalRecord> medicalRecords;
 
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+    private  List<Prescription> prescriptions;
+
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+    private  List<Payment> payments;
+
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+    private  List<Order> orders;
+
     @Column(name = "specialisation")
     private String specialisation;
 
@@ -197,5 +206,25 @@ public class Employee {
 
     public void setSpecialisation(String specialisation) {
         this.specialisation = specialisation;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", licenseId='" + licenseId + '\'' +
+                ", isActive=" + isActive +
+                ", birthDate=" + birthDate +
+                ", salary=" + salary +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", userId=" + userId.getId() +
+                ", specialisation='" + specialisation + '\'' +
+                '}';
     }
 }
