@@ -3,6 +3,7 @@ package com.company.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -41,5 +42,13 @@ public class Invoice {
 
     public Invoice(final byte[] invoice) {
         this.invoice = invoice;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "id=" + id +
+                ", invoice=" + Arrays.toString(invoice) +
+                '}';
     }
 }

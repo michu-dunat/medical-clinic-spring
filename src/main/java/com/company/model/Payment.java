@@ -133,4 +133,19 @@ public class Payment {
         this.employeeId = employeeId;
         this.invoiceId = invoiceId;
     }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id=" + id +
+                ", date=" + date +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", paymentStatus='" + paymentStatus + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", patientId=" + patientId.getId() +
+                ", companyId=" + companyId.getId() +
+                ", employeeId=" + employeeId.getId() +
+                ", invoiceId=" + invoiceId.getId() +
+                '}';
+    }
 }

@@ -20,7 +20,7 @@ public class GreetingController {
     @RequestMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
         var users = (List<User>) userService.findAll();
-        name = users.get(0).getPesel();
+        name = users.get(0).getPesel().toString();
         model.addAttribute("name", name);
         return "greeting";
     }
