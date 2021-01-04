@@ -124,7 +124,7 @@ public class Employee {
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.isActive = active;
     }
 
     public LocalDateTime getBirthDate() {
