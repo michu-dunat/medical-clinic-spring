@@ -68,6 +68,21 @@ public class Patient {
     @OneToMany(mappedBy = "patientId")
     private List<MedicalRecord> medicalRecords;
 
+    @OneToMany(mappedBy = "patientId")
+    private List<Notification> notifications;
+
+    @OneToMany(mappedBy = "patientId")
+    private List<Appointment> appointments;
+
+    @OneToMany(mappedBy = "patientId")
+    private List<Prescription> prescriptions;
+
+    @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL)
+    private  List<Payment> payments;
+
+    @OneToMany(mappedBy = "patientId", cascade = CascadeType.ALL)
+    private  List<Order> orders;
+
     @NotNull(message = "notification status cannot be null!")
     @Column(name = "notifications_status")
     private Boolean notificationStatus;

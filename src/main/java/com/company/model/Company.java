@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "companies")
@@ -32,6 +33,9 @@ public class Company {
 
     @Column(name = "postcode")
     private String postcode;
+
+    @OneToMany(mappedBy = "companyId", cascade = CascadeType.ALL)
+    private List<Payment> payments;
 
     public Company(@NotNull final String companyName, @NotNull final long nip, final String address,
                    final String city, final String postcode) {

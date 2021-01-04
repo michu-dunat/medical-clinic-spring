@@ -33,16 +33,19 @@ public class Payment {
 
     @ManyToOne
     @JoinColumn(name = "companiesid")
-    private Company company;
+    private Company companyId;
 
     @ManyToOne
     @JoinColumn(name = "employeesid")
     @NotNull
-    private Employee employee;
+    private Employee employeeId;
 
     @OneToOne
     @JoinColumn(name = "invoicesid")
-    private Invoice invoice;
+    private Invoice invoiceId;
+
+    @OneToOne(mappedBy = "paymentId", cascade = CascadeType.ALL)
+    private Order order;
 
     public int getId() {
         return id;
@@ -92,28 +95,28 @@ public class Payment {
         this.patientId = patient;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyId(Company company) {
+        this.companyId = company;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Employee getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployeeId(Employee employee) {
+        this.employeeId = employee;
     }
 
-    public Invoice getInvoice() {
-        return invoice;
+    public Invoice getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
+    public void setInvoiceId(Invoice invoice) {
+        this.invoiceId = invoice;
     }
 
     public Payment() {}
@@ -126,8 +129,8 @@ public class Payment {
         this.paymentStatus = paymentStatus;
         this.totalPrice = totalPrice;
         this.patientId = patientId;
-        this.company = companyId;
-        this.employee = employeeId;
-        this.invoice = invoiceId;
+        this.companyId = companyId;
+        this.employeeId = employeeId;
+        this.invoiceId = invoiceId;
     }
 }

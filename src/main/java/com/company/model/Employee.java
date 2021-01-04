@@ -62,6 +62,15 @@ public class Employee {
     @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
     private  List<MedicalRecord> medicalRecords;
 
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+    private  List<Prescription> prescriptions;
+
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+    private  List<Payment> payments;
+
+    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL)
+    private  List<Order> orders;
+
     @Column(name = "specialisation")
     private String specialisation;
 
