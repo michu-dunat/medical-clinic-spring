@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    //Do sprawdzenia
     @Qualifier("myUserDetailsService")
     @Autowired
     UserDetailsService userDetailsService;
@@ -23,14 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
-        System.out.println("\nXD\n");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("Admin")
+                .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").permitAll()
                 .antMatchers("/appointments").permitAll()
                 .antMatchers("/greeting").permitAll()
@@ -40,6 +38,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){
-        System.out.println("\n XDDD \n");
         return NoOpPasswordEncoder.getInstance(); }
 }
