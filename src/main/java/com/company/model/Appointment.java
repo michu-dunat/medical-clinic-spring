@@ -9,7 +9,10 @@ import java.time.LocalDate;
 public class Appointment {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="appointments_id_seq",
+                        sequenceName = "appointments_id_seq",
+                        allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointments_id_seq")
     @Column(name = "id")
     private int id;
 
