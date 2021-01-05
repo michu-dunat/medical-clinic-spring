@@ -40,14 +40,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin").permitAll()//.hasRole("ADMIN")
                 .antMatchers("/user").permitAll()//.hasAnyRole("ADMIN", "DOCTOR")
+                .antMatchers("/loginxd").permitAll()
                 .antMatchers("/appointments/doctor-selection").permitAll()
                 .antMatchers("/greeting").permitAll()
                 .antMatchers("/appointments/term-selection").permitAll()
                 .antMatchers("/").permitAll()
                 .and().formLogin();
     }
-
-
 
     @Bean
     DaoAuthenticationProvider authenticationProvider(){
