@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    //Do sprawdzenia
     @Qualifier("myUserDetailsService")
     @Autowired
     UserDetailsService userDetailsService;
@@ -28,11 +27,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        System.out.println(http);
-
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ClinicWorker", "Patient", "ADMIN")
+                .antMatchers("/user").permitAll()
+                .antMatchers("/appointments").permitAll()
+                .antMatchers("/greeting").permitAll()
                 .antMatchers("/").permitAll()
                 .and().formLogin();
     }
