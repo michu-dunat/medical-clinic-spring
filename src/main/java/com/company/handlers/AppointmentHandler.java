@@ -1,6 +1,7 @@
 package com.company.handlers;
 
 import com.company.model.Appointment;
+import com.company.model.DataReader;
 import com.company.model.Employee;
 import com.company.model.Patient;
 
@@ -8,6 +9,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class AppointmentHandler {
+
+    DataReader dataReader;
+    Appointment appointment;
 
     public Patient initializePatientSelection() {
         return null;
@@ -17,7 +21,7 @@ public class AppointmentHandler {
         return null;
     }*/
 
-    public List<Appointment> browseCalencar(Patient patient) {
+    public List<Appointment> browseCalendar(Patient patient) {
         return null;
     }
 
