@@ -2,14 +2,14 @@ package com.company.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "appointments")
 public class Appointment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
 
@@ -19,7 +19,7 @@ public class Appointment {
 
     @NotNull(message = "Date cannot be null")
     @Column(name = "date")
-    private LocalDateTime date;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "patientsid")
@@ -47,11 +47,11 @@ public class Appointment {
         this.roomNumber = roomNumber;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -73,7 +73,7 @@ public class Appointment {
 
     public Appointment() {}
 
-    public Appointment(final String roomNumber, final LocalDateTime date, final Patient patientId,
+    public Appointment(final String roomNumber, final LocalDate date, final Patient patientId,
                        final Employee employeeId) {
         this.roomNumber = roomNumber;
         this.date = date;
