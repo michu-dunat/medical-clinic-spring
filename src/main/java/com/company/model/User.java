@@ -2,6 +2,9 @@ package com.company.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -82,6 +85,14 @@ public class User {
 
     public void setPesel(Long pesel) {
         this.pesel = pesel;
+    }
+
+    public List<String> getRoleList(){
+        String roleString = this.role.getRole();
+        if(roleString.length() > 0){
+            return Arrays.asList(roleString.split(","));
+        }
+        return new ArrayList<>();
     }
 
     @Override
