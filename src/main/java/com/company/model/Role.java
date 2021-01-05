@@ -1,6 +1,7 @@
 package com.company.model;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Entity
@@ -8,8 +9,9 @@ import java.util.List;
 public class Role {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private Integer id;
 
     @Column(name = "role")
     private String role;
@@ -17,7 +19,7 @@ public class Role {
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
     private List<User> user;
 
-    public Role(String id, String role) {
+    public Role(Integer id, String role) {
         this.id = id;
         this.role = role;
     }
@@ -26,11 +28,11 @@ public class Role {
 
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
