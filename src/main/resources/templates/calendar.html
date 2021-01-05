@@ -12,8 +12,8 @@
     </div>
 
     <div>
-        <form method="post" th:object="${date}">
-            <input type="date" th:value="${date}" th:field="${date}">
+        <form action="#" th:action="@{/appointments/date-selection}" method="post" th:object="${date}">
+            <input type="date" name="XD" th:field="${date}" th:value=XD>
             <input type="submit" value="Wybierz">
         </form>
     </div>
