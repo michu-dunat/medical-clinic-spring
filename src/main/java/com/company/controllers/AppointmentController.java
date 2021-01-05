@@ -1,5 +1,6 @@
 package com.company.controllers;
 
+import com.company.model.DataReader;
 import com.company.model.Employee;
 import com.company.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -22,8 +25,6 @@ public class AppointmentController {
     private EmployeeRepository employeeRepository;
 
     private Employee e;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date d;
 
     @GetMapping("/appointments/doctor-selection")
     public String showDoctors(Model model) {
@@ -31,40 +32,29 @@ public class AppointmentController {
         var doctors = (List<Employee>) employeeRepository.findAllDoctors();
 
         model.addAttribute("doctors", doctors);
-        model.addAttribute("selectedDoctor", new Employee());
+        model.addAttribute("selectedDoctor", new DataReader());
 
         return "doctors";
     }
 
     @PostMapping("/appointments/doctor-selection")
-    public String chosenDoctor(@ModelAttribute Employee doctor, Model model) {
-        String doctorId = doctor.getId();
-        var doc = employeeRepository.findEmployeeById(doctorId);
-        e = doc;
+    public String chosenDoctor(@ModelAttribute DataReader data, Model model) {
+        String doctorId = data.getData();
+        e = employeeRepository.findEmployeeById(doctorId);
         return "redirect:/appointments/date-selection";
     }
 
     @GetMapping("/appointments/date-selection")
     public String pickDate(Model model) {
         model.addAttribute("doc", e);
-        model.addAttribute("date", new Date());
+        model.addAttribute("selectedDate", new DataReader());
 
         return "calendar";
     }
 
     @PostMapping("/appointments/date-selection")
-    public String showEverything(@ModelAttribute Date date, Model model) {
-        d = date;
-        System.out.println(d);
+    public String showEverything(@ModelAttribute DataReader data, Model model) {
+        System.out.println(data.getData());
         return "redirect:/user";
     }
-
-    /*
-    @GetMapping("/appointments/term-selection")
-    public String chosenTerm(Model model) {
-
-        model.addAttribute("date", new Date());
-        return "calendar";
-    }
-    */
 }

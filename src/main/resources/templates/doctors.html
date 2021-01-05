@@ -26,7 +26,7 @@
         <td colspan="2"> Brak dostępnych lekarzy. </td>
     </tr>
     <tr th:each="doctor : ${doctors}">
-        <td><input type="radio" name="doctorRadio" th:value="${doctor.id}" th:field="${selectedDoctor.id}"><span th:text="${doctor.getFirstName()}"> Imię </span></td>
+        <td><input type="radio" name="doctorRadio" th:value="${doctor.id}" th:field="${selectedDoctor.data}"><span th:text="${doctor.getFirstName()}"> Imię </span></td>
         <td><span th:text="${doctor.getLastName()}"> Nazwisko </span></td>
         <td><span th:text="${doctor.getSpecialisation()}"> Specjalizacja </span></td>
     </tr>
