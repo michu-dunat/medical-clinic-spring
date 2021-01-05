@@ -106,7 +106,7 @@ public class AppointmentController {
     @GetMapping("/appointments/success")
     public String success(Model model) {
         Appointment appointment = new Appointment("1.06", d, p, e);
-        appointment.setId(10);
+        //appointment.setId(10);
         System.out.println(appointment.toString());
         appointmentRepository.save(appointment);
         return "redirect:/user";
