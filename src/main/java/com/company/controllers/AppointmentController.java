@@ -22,8 +22,8 @@ public class AppointmentController {
     private EmployeeRepository employeeRepository;
 
     @GetMapping("/appointments/doctor-selection")
-    public String showDoctors (Model model) {
-        var doctors = (List< Employee >) employeeRepository.findAllDoctors();
+    public String showDoctors(Model model) {
+        var doctors = (List<Employee>) employeeRepository.findAllDoctors();
         model.addAttribute("doctors", doctors);
         model.addAttribute("selectedDoctor", new Employee());
 
@@ -38,4 +38,11 @@ public class AppointmentController {
         model.addAttribute("date", new Date());
         return "calendar";
     }
+
+/*    @GetMapping("/appointments/term-selection")
+    public String chosenTerm(Model model) {
+
+        model.addAttribute("date", new Date());
+        return "calendar";
+    }*/    
 }
