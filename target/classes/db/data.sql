@@ -91,10 +91,10 @@ INSERT INTO public.notifications (id, description, date, patientsid) VALUES (7, 
 INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (1, 1, 1, 'CW001');
 INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (2, 2, 3, 'CW001');
 INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (3, 4, 6, 'CW002');
-INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (4, 5, 3, 'CW002');
+INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (4, 5, 2, 'CW002');
 INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (5, 8, 8, 'CW001');
-INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (6, 10, 11, 'CW001');
-INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (8, 6, 7, 'CW001');
+INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (6, 10, 9, 'CW001');
+INSERT INTO public.orders (id, patientsid, paymentsid, employeesid) VALUES (7, 6, 7, 'CW001');
 
 
 --
@@ -108,7 +108,7 @@ INSERT INTO public.orders_services (ordersid, servicesid) VALUES (2, 2);
 INSERT INTO public.orders_services (ordersid, servicesid) VALUES (3, 4);
 INSERT INTO public.orders_services (ordersid, servicesid) VALUES (4, 5);
 INSERT INTO public.orders_services (ordersid, servicesid) VALUES (5, 7);
-INSERT INTO public.orders_services (ordersid, servicesid) VALUES (8, 5);
+INSERT INTO public.orders_services (ordersid, servicesid) VALUES (7, 5);
 
 
 --
@@ -127,7 +127,7 @@ INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, 
 INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (8, 'Teresa', 'Pawłowska', '1959-02-07', 'A+', '3. Maja 28', 'Wrocław', '44-273', NULL, NULL, NULL, '6798400212', NULL, NULL, 17, NULL);
 INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (9, 'Jolanta', 'Mytek', '1998-07-03', NULL, 'Wąska 28/5', 'Katowice', '40-222', NULL, NULL, NULL, '6742344123', NULL, NULL, 18, true);
 INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (10, 'Tomasz', 'Tomczyk', '1978-01-01', NULL, 'Szeroka 23d', 'Wrocław', '50-222', NULL, NULL, NULL, '600044123', NULL, 'tomtom@gmail.com', 19, NULL);
-INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (11, 'Renata', 'Biedronka', '1942-04-30', '0-', 'Żółta 1d', 'Katowice', '44-222', NULL, NULL, NULL, '609000233', NULL, NULL, 22, NULL);
+INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (11, 'Renata', 'Biedronka', '1942-04-30', '0-', 'Żółta 1d', 'Katowice', '44-222', NULL, NULL, NULL, '609000233', NULL, NULL, 21, NULL);
 
 
 --
@@ -143,7 +143,7 @@ INSERT INTO public.payments (id, date, payment_method, payment_status, total_pri
 INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (6, '2020-11-11', 'Mobile payment', 'Pending', 53.0, 8, 1, 'CW001', 1);
 INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (7, '2020-11-14', 'Electronic bank transfer', 'Complete', 14.0, 2, 2, 'CW002', 2);
 INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (8, '2020-11-11', 'Mobile payment', 'Pending', 23.0, 1, NULL, 'CW001', NULL);
-INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (11, '2020-11-11', 'Mobile payment', 'Pending', 23.0, 2, NULL, 'CW002', NULL);
+INSERT INTO public.payments (id, date, payment_method, payment_status, total_price, patientsid, companiesid, employeesid, invoicesid) VALUES (9, '2020-11-11', 'Mobile payment', 'Pending', 23.0, 2, NULL, 'CW002', NULL);
 
 
 --
@@ -158,7 +158,7 @@ INSERT INTO public.prescriptions (id, date, description, patientsid, employeesid
 INSERT INTO public.prescriptions (id, date, description, patientsid, employeesid) VALUES ('4', '2020-11-20', 'Ibuprom', 4, 'D003');
 INSERT INTO public.prescriptions (id, date, description, patientsid, employeesid) VALUES ('5', '2020-11-22', 'Pyralgina', 1, 'D002');
 INSERT INTO public.prescriptions (id, date, description, patientsid, employeesid) VALUES ('6', '2020-11-12', 'Entyrox', 8, 'D003');
-INSERT INTO public.prescriptions (id, date, description, patientsid, employeesid) VALUES ('10', '2020-10-28', 'Opis recepty wygląda następująco...', 3, 'D001');
+INSERT INTO public.prescriptions (id, date, description, patientsid, employeesid) VALUES ('100', '2020-10-28', 'Opis recepty wygląda następująco...', 3, 'D001');
 
 
 --
@@ -176,34 +176,41 @@ INSERT INTO public.services (id, service_name, price, service_description) VALUE
 INSERT INTO public.services (id, service_name, price, service_description) VALUES (7, 'Covid-19', NULL, NULL);
 INSERT INTO public.services (id, service_name, price, service_description) VALUES (8, 'Alergeny', 44.5, 'Składa się z 40 alergenów');
 
-
+INSERT INTO public.roles (id, role) VALUES (1,'ROLE_ADMIN');
+INSERT INTO public.roles (id, role) VALUES (2,'ROLE_PATIENT');
+INSERT INTO public.roles (id, role) VALUES (3,'ROLE_LABWORKER');
+INSERT INTO public.roles (id, role) VALUES (4,'ROLE_CLINICWORKER');
+INSERT INTO public.roles (id, role) VALUES (5,'ROLE_DOCTOR');
 --
 -- TOC entry 3150 (class 0 OID 16894)
 -- Dependencies: 218
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (1, 'PawMac', 'haslo', 'Patient', '98048421543');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (2, 'PioGor', 'haslo', 'Patient', '98048434543');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (3, 'BeaTry', '123', 'Patient', '99048434543');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (4, 'KamHul', 'haasslloo', 'Doctor', NULL);
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (5, 'admin', 'admin', 'Admin', NULL);
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (7, 'KarOls', 'haslohaslo', 'LabWorker', NULL);
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (8, 'MicDun', 'wow102', 'LabWorker', NULL);
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (9, 'BłaUła', 'suwalki', 'ClinicWorker', NULL);
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (11, 'ArtSol', 'costam', 'Doctor', NULL);
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (13, 'MonMak', 'haha', 'Doctor', NULL);
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (16, 'MarWoj', 'qazwsxedc', 'Doctor', NULL);
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (6, 'PauLis', '123512', 'Patient', '00290112345');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (10, 'DawDop', 'slask', 'Patient', '7032432532443');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (12, 'HelHaw', 'polskapolska', 'ClinicWorker', '532413243413');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (14, 'MarMat', 'qwerty', 'Patient', '432141234324');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (15, 'MarPol', 'poqlrk', 'Patient', '9512435132412');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (17, 'TerPaw', 'kocimietka', 'Patient', '12345678901');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (18, 'JolMyt', 'piesikot', 'Patient', '98765432123');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (19, 'TomTom', 'porsche', 'Patient', '95124509823');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (22, 'RenBie', 'polololo', 'Patient', '4323122456');
-INSERT INTO public.users (id, username, password, role, pesel) VALUES (20, 'AdrZys', 'fajnehaslo', 'Doctor', NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (1, 'PawMac', 'haslo', 2, '98048421543');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (2, 'PioGor', 'haslo', 2, '98048434543');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (3, 'BeaTry', '123', 2, '99048434543');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (4, 'KamHul', 'XDDD', 5, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (5, 'admin', 'admin', 1, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (7, 'KarOls', 'haslohaslo', 3, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (8, 'MicDun', 'wow102', 3, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (9, 'BłaUła', 'suwalki', 4, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (11, 'ArtSol', 'costam', 5, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (13, 'MonMak', 'haha', 5, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (16, 'MarWoj', 'qazwsxedc', 5, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (6, 'PauLis', '123512', 2, '00290112345');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (10, 'DawDop', 'slask', 2, '7032432532443');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (12, 'HelHaw', 'polskapolska', 4, '532413243413');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (14, 'MarMat', 'qwerty', 2, '432141234324');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (15, 'MarPol', 'poqlrk', 2, '9512435132412');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (17, 'TerPaw', 'kocimietka', 2, '12345678901');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (18, 'JolMyt', 'piesikot', 2, '98765432123');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (19, 'TomTom', 'porsche', 2, '95124509823');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (20, 'RenBie', 'polololo', 2, '4323122456');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (21, 'AdrZys', 'fajnehaslo', 5, NULL);
+
+
+
 
 
 --
@@ -222,6 +229,8 @@ SELECT pg_catalog.setval('public.companies_id_seq', 4, true);
 --
 
 SELECT pg_catalog.setval('public.invoices_id_seq', 4, true);
+
+SELECT pg_catalog.setval('public.roles_id_seq', 6, true);
 
 
 --
@@ -266,7 +275,7 @@ SELECT pg_catalog.setval('public.patients_id_seq', 11, true);
 -- Name: payments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.payments_id_seq', 11, true);
+SELECT pg_catalog.setval('public.payments_id_seq', 10, true);
 
 
 --
@@ -412,7 +421,8 @@ ALTER TABLE ONLY public.users
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_username_key UNIQUE (username);
 
-
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
 --
 -- TOC entry 2977 (class 1259 OID 16929)
 -- Name: employees_first_name; Type: INDEX; Schema: public; Owner: postgres
@@ -477,7 +487,8 @@ CREATE INDEX services_service_name ON public.services USING btree (service_name)
 ALTER TABLE ONLY public.employees
     ADD CONSTRAINT fkemployees389253 FOREIGN KEY (usersid) REFERENCES public.users(id) ON DELETE CASCADE;
 
-
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fkusers13372115 FOREIGN KEY (roleid) REFERENCES public.roles(id) ON DELETE CASCADE;
 --
 -- TOC entry 2989 (class 2606 OID 16948)
 -- Name: medical_records fkmedical_re344218; Type: FK CONSTRAINT; Schema: public; Owner: postgres
@@ -612,8 +623,20 @@ ALTER TABLE ONLY public.prescriptions
 -- Dependencies: 221
 -- Name: TABLE appointments; Type: ACL; Schema: public; Owner: postgres
 --
+GRANT SELECT,INSERT,DELETE, UPDATE ON TABLE public.roles TO administrator;
+GRANT SELECT ON public.roles TO clinicworker;
+GRANT SELECT ON TABLE public.roles TO doctor;
+GRANT SELECT ON TABLE public.roles TO labworker;
+GRANT SELECT ON TABLE public.roles TO patient;
+
+GRANT SELECT,USAGE ON SEQUENCE public.roles_id_seq TO labworker;
+GRANT SELECT,USAGE ON SEQUENCE public.roles_id_seq TO doctor;
+GRANT SELECT,USAGE ON SEQUENCE public.roles_id_seq TO patient;
+GRANT SELECT,USAGE ON SEQUENCE public.roles_id_seq TO clinicworker;
+
 
 GRANT SELECT,INSERT,DELETE ON TABLE public.appointments TO clinicworker;
+
 GRANT SELECT ON TABLE public.appointments TO doctor;
 GRANT SELECT ON TABLE public.appointments TO patient;
 
