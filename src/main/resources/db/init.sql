@@ -375,12 +375,11 @@ ALTER TABLE public.services_id_seq OWNER TO postgres;
 ALTER SEQUENCE public.services_id_seq OWNED BY public.services.id;
 
 CREATE TABLE public.users (
-    id integer NOT NULL,
+    id integer NOT NULL,    
     username character varying(257) NOT NULL,
     password character varying(257) NOT NULL,
-    role character varying(20) NOT NULL,
-    pesel character varying(15),
-    CONSTRAINT users_role CHECK (((role)::text = ANY ((ARRAY['Admin'::character varying, 'ClinicWorker'::character varying, 'Doctor'::character varying, 'Patient'::character varying, 'LabWorker'::character varying])::text[])))
+    roleid integer NOT NULL,
+    pesel character varying(15)
 );
 
 
@@ -398,6 +397,29 @@ ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
+ALTER TABLE public.prescriptions OWNER TO postgres;
+
+CREATE TABLE public.roles (
+      id integer NOT NULL,
+      role character varying(50) NOT NULL
+          CONSTRAINT roles_role CHECK (((role)::text = ANY ((ARRAY['ROLE_ADMIN'::character varying, 'ROLE_CLINICWORKER'::character varying, 'ROLE_LABWORKER'::character varying, 'ROLE_PATIENT'::character varying, 'ROLE_DOCTOR'::character varying])::text[])))
+);
+
+ALTER TABLE public.roles OWNER TO postgres;
+
+CREATE SEQUENCE public.roles_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.roles_id_seq OWNER TO postgres;
+
+ALTER SEQUENCE public.roles_id_seq OWNED BY public.services.id;
+
 ALTER TABLE ONLY public.companies ALTER COLUMN id SET DEFAULT nextval('public.companies_id_seq'::regclass);
 
 ALTER TABLE ONLY public.invoices ALTER COLUMN id SET DEFAULT nextval('public.invoices_id_seq'::regclass);
@@ -413,6 +435,8 @@ ALTER TABLE ONLY public.patients ALTER COLUMN id SET DEFAULT nextval('public.pat
 ALTER TABLE ONLY public.payments ALTER COLUMN id SET DEFAULT nextval('public.payments_id_seq'::regclass);
 
 ALTER TABLE ONLY public.services ALTER COLUMN id SET DEFAULT nextval('public.services_id_seq'::regclass);
+
+ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 

@@ -24,8 +24,9 @@ public class User {
     private String password;
 
     @NotNull(message = "Role cannot be null!")
-    @Column(name = "role")
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "roleid")
+    private Role role;
 
     @OneToOne(mappedBy = "userId", cascade = CascadeType.ALL)
     private Patient patient;
@@ -35,7 +36,7 @@ public class User {
 
     public User() {}
 
-    public User(final String username, final Long pesel, final String password, final String role) {
+    public User(final String username, final Long pesel, final String password, final Role role) {
         this.pesel = pesel;
         this.username = username;
         this.password = password;
@@ -51,11 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(final String role) {
+    public void setRole(final Role role) {
         this.role = role;
     }
 

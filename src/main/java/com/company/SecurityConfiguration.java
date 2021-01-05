@@ -2,11 +2,13 @@ package com.company;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -14,13 +16,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     //Do sprawdzenia
+    @Qualifier("myUserDetailsService")
     @Autowired
-    MyUserDetailsService userDetailsService;
+    UserDetailsService userDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
-        System.out.println("\nXD\n");
     }
 
     @Override
@@ -29,14 +31,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         System.out.println(http);
 
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("postgres")
-                .antMatchers("/user").hasAnyRole("ClinicWorker", "Patient", "Admin")
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/user").hasAnyRole("ClinicWorker", "Patient", "ADMIN")
                 .antMatchers("/").permitAll()
                 .and().formLogin();
     }
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){
-        System.out.println("\n XDDD \n");
         return NoOpPasswordEncoder.getInstance(); }
 }
