@@ -25,7 +25,7 @@ public class AppointmentService {
     }
 
     public List<Appointment> findAppointmentByEmployee() {
-        var appointments = repository.findAppointmentsByEmployeeId(repo.findEmployeeById("D001"));
+        var appointments = repository.findAppointmentsByEmployeeId("D001");
         return appointments;
     }
 }

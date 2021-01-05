@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Wprowadź nazwisko pacjenta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body th:object="${lastName}">
+<div>
+    <form action="#" th:action="@{/appointments/patient-last-name-input}" method="post" th:object="${lastName}">
+        <input type="text" th:field="${lastName.data}">
+        <input type="submit" value="Przejdź dalej">
+    </form>
+</div>
+</body>
+</html>
