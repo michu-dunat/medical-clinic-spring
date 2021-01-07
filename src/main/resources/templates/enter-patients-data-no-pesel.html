@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Dodawanie nowego pacjenta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<h1>Enter patients data</h1>
+<div>
+    <form action="#" th:action="@{/clinic/create-patient/enter-data-without-pesel}" method="post" th:object="${patient}">
+        <table>
+            <tr><td width="2"><b>Imię:</b></td> <td><input type="text" th:field="${patient.firstName}"></td></tr>
+            <tr><td width="2"><b>Nazwisko:</b></td> <td><input type="text" th:field="${patient.lastName}"></td></tr>
+            <tr><td width="2"><b>Data urodzenia:</b></td> <td><input type="date" th:field="${patient.birthDate}"></td></tr>
+            <tr><td width="2"><b>Grupa krwii:</b></td> <td><input type="text" th:field="${patient.bloodType}"></td></tr>
+            <tr><td width="2"><b>Numer telefonu</b></td> <td><input type="text" th:field="${patient.phoneNumber}"></td></tr>
+            <tr><td width="2"><b>Kontaktowy numer:</b></td> <td><input type="text" th:field="${patient.contactPhone}"></td></tr>
+            <tr><td width="2"><b>Email:</b></td> <td><input type="text" th:field="${patient.emailAddress}"></td></tr>
+            <!--            <tr><td> </td></tr>-->
+
+            <tr><td width="2"><b>Adres:</b></td> <td><input type="text" th:field="${patient.address}"></td></tr>
+            <tr><td width="2"><b>Miasto:</b></td> <td><input type="text" th:field="${patient.city}"></td></tr>
+            <tr><td width="2"><b>Kod pocztowy:</b></td> <td><input type="text" th:field="${patient.postcode}"></td></tr>
+            <tr><td width="2"><b>Adres:</b></td> <td><input type="text" th:field="${patient.permanentAddress}"></td></tr>
+            <tr><td width="2"><b>Miasto:</b></td> <td><input type="text" th:field="${patient.permanentCity}"></td></tr>
+            <tr><td width="2"><b>Kod pocztowy:</b></td> <td><input type="text" th:field="${patient.permanentPostcode}"></td></tr>
+        </table>
+
+
+
+        <input type="submit" value="Wprowadź dane">
+    </form>
+</div>
+</body>
+</html>

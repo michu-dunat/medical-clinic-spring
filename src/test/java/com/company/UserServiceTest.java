@@ -22,4 +22,10 @@ public class UserServiceTest {
         var users = (List<User>) userService.findAll();
         System.out.println(users.get(0));
     }
+
+    @Test
+    public void findAllByPESEL(){
+        var user = userService.findUserByPESEL("00290112345");
+        System.out.println(user.toString());
+    }
 }

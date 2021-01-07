@@ -45,6 +45,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/greeting").permitAll()
                 .antMatchers("/appointments/term-selection").permitAll()
                 .antMatchers("/").permitAll()
+                .antMatchers("/clinic/create-patient/enter-data").permitAll()
+                .antMatchers("/clinic/create-patient/has-pesel").permitAll()
+                .antMatchers("/clinic/create-patient/already-exists").permitAll()
                 .and().formLogin();
     }
 

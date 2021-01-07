@@ -19,4 +19,9 @@ public class UserService {
 
         return users;
     }
+
+    public User findUserByPESEL(String PESEL){
+        var user = repository.getUserByPesel(PESEL);
+        return user.orElseThrow();
+    }
 }

@@ -101,6 +101,18 @@ CREATE TABLE public.appointments (
 
 ALTER TABLE public.appointments OWNER TO postgres;
 
+CREATE SEQUENCE public.appointments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+ALTER TABLE public.appointments_id_seq OWNER TO postgres;
+
+ALTER SEQUENCE public.appointments_id_seq OWNED BY public.appointments.id;
+
 CREATE TABLE public.employees (
     id character varying(50) NOT NULL,
     first_name character varying(30) NOT NULL,
@@ -299,7 +311,7 @@ CREATE TABLE public.patients (
     email_address character varying(150),
     usersid integer NOT NULL,
     notifications_status boolean,
-    CONSTRAINT patients_blood_type CHECK (((blood_type)::text = ANY ((ARRAY['A+'::character varying, 'A-'::character varying, 'B+'::character varying, 'B-'::character varying, '0+'::character varying, '0-'::character varying, 'AB+'::character varying, 'AB-'::character varying])::text[])))
+    CONSTRAINT patients_blood_type CHECK (((blood_type)::text = ANY ((ARRAY['A+'::character varying, 'A-'::character varying, 'B+'::character varying, 'B-'::character varying, '0+'::character varying, '0-'::character varying, 'AB+'::character varying, 'AB-'::character varying, NULL])::text[])))
 );
 
 
@@ -439,6 +451,8 @@ ALTER TABLE ONLY public.services ALTER COLUMN id SET DEFAULT nextval('public.ser
 ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+ALTER TABLE ONLY public.appointments ALTER COLUMN id SET DEFAULT nextval('public.appointments_id_seq'::regclass);
 
 ALTER SYSTEM SET listen_addresses = '*';
 

@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Dodawanie nowego pacjenta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body th:object="${dataReader}">
+<div>
+    <form action="#" th:action="@{/clinic/create-patient/has-pesel}" method="post" th:object="${dataReader}">
+        <input type="text" th:field="${dataReader.pesel}">
+        <input type="checkbox" name="data" th:checked="${dataReader.setData('true')}" value="true">
+        <input type="submit" value="Wprowadź PESEL">
+    </form>
+</div>
+</body>
+</html>
