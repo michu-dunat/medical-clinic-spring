@@ -18,9 +18,8 @@ public class HomeController {
         if (roles.contains("ROLE_PATIENT")) {
             return "redirect:/patient";
         } else if (roles.contains("ROLE_CLINICWORKER")) {
-            return "redirect/clinic-worker";
+            return "redirect:/clinic-worker";
         }
         return "";
     }
-
 }
