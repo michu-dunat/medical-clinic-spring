@@ -15,11 +15,16 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
     public void onAuthenticationSuccess(HttpServletRequest request,   HttpServletResponse response, Authentication authentication) throws IOException  {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        if (roles.contains("ROLE_PATIENT")) {
-            response.sendRedirect("/appointments/doctor-selection");
-        } else if (roles.contains("ROLE_LABWORKER")) {
-            response.sendRedirect("/appointments/patient-last-name-input");
+        if (roles.contains("ROLE_ADMIN")) {
+            response.sendRedirect("admin");
+        } else if (roles.contains("ROLE_PATIENT")) {
+            response.sendRedirect("patient");
+        }  else if (roles.contains("ROLE_LABWORKER")) {
+            response.sendRedirect("user");
+        } else if (roles.contains("ROLE_CLINICWORKER")) {
+            response.sendRedirect("clinic-worker");
+        } else if (roles.contains("ROLE_DOCTOR")) {
+            response.sendRedirect("user");
         }
-        //TODO other roles
     }
 }
