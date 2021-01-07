@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wizyty pacjenta</title>
+</head>
+<body>
+    <h1>
+        Wizyty wybranego pacjenta:
+    </h1>
+    <table>
+        <thead>
+        <tr>
+            <th> Imię i nazwisko lekarza</th>
+            <th> Specjalizacja </th>
+            <th> Data </th>
+            <th> Numer pokoju </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${appointments.isEmpty()}">
+            <td colspan="2"> Brak wizyt tego pacjenta. </td>
+        </tr>
+        <tr th:if="${appointments.size()>0}" th:each="appointment : ${appointments}">
+            <td><span th:text="${appointment.getEmployeeId().getFirstName()} + ' ' + ${appointment.getEmployeeId().getLastName()}"> Imię i nazwisko lekarza </span></td>
+            <td><span th:text="${appointment.getEmployeeId().getSpecialisation()}"> Specjalizacja </span></td>
+            <td><span th:text="${appointment.getDate()}"> Data wizyty </span></td>
+            <td><span th:text="${appointment.getRoomNumber()}"> Numer pokoju </span></td>
+        </tr>
+        </tbody>
+</table>
+    <p>
+        <input type="button" value="Cofnij" onclick="history.back()">
+    </p>
+</body>
+</html>
