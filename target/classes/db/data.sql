@@ -220,6 +220,7 @@ INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (21, 'Ad
 --
 
 SELECT pg_catalog.setval('public.companies_id_seq', 4, true);
+SELECT pg_catalog.setval('public.appointments_id_seq', 8, true);
 
 
 --
@@ -634,6 +635,10 @@ GRANT SELECT,USAGE ON SEQUENCE public.roles_id_seq TO doctor;
 GRANT SELECT,USAGE ON SEQUENCE public.roles_id_seq TO patient;
 GRANT SELECT,USAGE ON SEQUENCE public.roles_id_seq TO clinicworker;
 
+GRANT SELECT,USAGE ON SEQUENCE public.appointments_id_seq TO labworker;
+GRANT SELECT,USAGE ON SEQUENCE public.appointments_id_seq TO doctor;
+GRANT SELECT,USAGE ON SEQUENCE public.appointments_id_seq TO patient;
+GRANT SELECT,USAGE ON SEQUENCE public.appointments_id_seq TO clinicworker;
 
 GRANT SELECT,INSERT,DELETE ON TABLE public.appointments TO clinicworker;
 
