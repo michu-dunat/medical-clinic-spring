@@ -1,14 +1,14 @@
 package com.company.controllers;
 
+import com.company.MyUserDetailsService;
 import com.company.handlers.AppointmentHandler;
-import com.company.model.Appointment;
-import com.company.model.DataReader;
-import com.company.model.Employee;
-import com.company.model.Patient;
+import com.company.model.*;
 import com.company.repositories.AppointmentRepository;
 import com.company.repositories.EmployeeRepository;
 import com.company.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +33,13 @@ public class AppointmentController {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
+
+
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
     private Employee e;
-    private Patient p;
+    private Patient p = null;
     private LocalDate d;
     private String lastName;
 
@@ -105,6 +110,10 @@ public class AppointmentController {
 
     @GetMapping("/appointments/success")
     public String success(Model model) {
+        if(p == null) {
+            Authentication getCurrentLoginContext = SecurityContextHolder.getContext().getAuthentication();
+            p = myUserDetailsService.getPatientByUser((MyUserDetails) getCurrentLoginContext.getPrincipal());
+        }
         Appointment appointment = new Appointment("1.06", d, p, e);
         //appointment.setId(10);
         System.out.println(appointment.toString());
