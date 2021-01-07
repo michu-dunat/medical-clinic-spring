@@ -150,7 +150,7 @@ public class AppointmentController {
         if (p == null)
             p = appointmentHandler.getPatientIfPatientLoggedIn();
 
-        Appointment a = appointmentHandler.createAppointment(p, e, d);
+        Appointment a = appointmentHandler.saveAppointment(p, e, d);
 
         if (a != null)
             return "redirect:/appointments/success";
