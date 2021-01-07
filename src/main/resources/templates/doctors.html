@@ -25,26 +25,20 @@
     <tr th:if="${doctors.isEmpty()}">
         <td colspan="2"> Brak dostępnych lekarzy. </td>
     </tr>
-    <tr th:each="doctor : ${doctors}">
+    <tr th:if="${doctors.size()>0}" th:each="doctor : ${doctors}">
         <td><input type="radio" name="doctorRadio" th:value="${doctor.id}" th:field="${selectedDoctor.data}"><span th:text="${doctor.getFirstName()}"> Imię </span></td>
         <td><span th:text="${doctor.getLastName()}"> Nazwisko </span></td>
         <td><span th:text="${doctor.getSpecialisation()}"> Specjalizacja </span></td>
     </tr>
     </tbody>
 </table>
-    <input type="submit" value="Wybierz"></input>
+
+    <p th:if="${doctors.isEmpty()}">
+        <input type="button" value="Cofnij" onclick="history.back()">
+    </p>\
+    <p th:if="${doctors.size()>0}">
+        <input type="submit" value="Wybierz">
+    </p>
 </form>
 </body>
 </html>
-
-
-<!--
-<form action="#" th:action="@{/appointments}" th:object="${appointment}" method="post">
-    <p>Id:          <input type="text" th:field="*{id}" /></p>
-    <p>Room_number: <input type="text" th:field="*{roomNumber}" /></p>
-    <p>Date:        <input type="text" th:field="*{date}" /></p>
-    <p>Patients_id: <input type="text" th:field="*{patientId}" /></p>
-    <p>Employee_id: <input type="text" th:field="*{employeeId}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-</form>
--->

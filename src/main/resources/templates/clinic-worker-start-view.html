@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel pracownika laboratorium.</title>
+</head>
+<body>
+<h1>
+    Panel pracownika laboratorium
+</h1>
+
+<form action="#" th:action="@{/clinic-worker}" th:object="${boolin}" method="post">
+    <p>
+        <input type="radio" value="true" th:id="true" th:name="true" th:field="${boolin.data}">Umów wizytę
+    </p>
+    <p>
+        <input type="radio" value="false" th:id="false" th:name="false" th:field="${boolin.data}">Odwołaj wizytę
+    </p>
+    <p>
+        <input type="submit" value="Przejdź dalej">
+    </p>
+
+</form>
+
+</body>
+</html>

@@ -42,6 +42,20 @@ public class AppointmentController {
     private Patient p = null;
     private LocalDate d;
     private String lastName;
+    private String appointmentIdToBeDeleted;
+    private boolean isMakeAppointmentClicked;
+
+    @GetMapping("/clinic-worker")
+    public String clinicWorkerPanel(Model model) {
+        model.addAttribute("boolin", new DataReader());
+        return "clinic-worker-start-view";
+    }
+
+    @PostMapping("/clinic-worker")
+    public String clinicWorkerChoice(@ModelAttribute DataReader data, Model model) {
+        isMakeAppointmentClicked = Boolean.parseBoolean(data.getData());
+        return "redirect:/appointments/patient-last-name-input";
+    }
 
     @GetMapping("/appointments/doctor-selection")
     public String selectDoctor(Model model) {
@@ -80,14 +94,12 @@ public class AppointmentController {
 
     @GetMapping("/appointments/patient-last-name-input")
     public String inputPatientLastName(Model model) {
-        System.out.println("Get patient last name");
         model.addAttribute("lastName", new DataReader());
         return "patient-last-name";
     }
 
     @PostMapping("/appointments/patient-last-name-input")
     public String savePatientLastNameAndRedirectToPatientSelection(@ModelAttribute DataReader data, Model model) {
-        System.out.println(lastName);
         lastName = data.getData();
         return "redirect:/appointments/patient-selection";
     }
@@ -95,7 +107,6 @@ public class AppointmentController {
 
     @GetMapping("/appointments/patient-selection")
     public String selectPatient(Model model) {
-        System.out.println("wybor pacjenta");
         List<Patient> patients = appointmentHandler.browsePatients(lastName);
         model.addAttribute("patients", patients);
         model.addAttribute("selectedPatient", new DataReader());
@@ -105,20 +116,48 @@ public class AppointmentController {
     @PostMapping("/appointments/patient-selection")
     public String savePatientAndRedirectToDoctorSelection(@ModelAttribute DataReader data, Model model) {
         p = patientRepository.findPatientById(Integer.parseInt(data.getData()));
-        return "redirect:/appointments/doctor-selection";
+        if(isMakeAppointmentClicked)
+            return "redirect:/appointments/doctor-selection";
+        else
+            return "redirect:/appointments/appointment-selection";
     }
 
-    @GetMapping("/appointments/success")
-    public String success(Model model) {
+    @GetMapping("/appointments/make-appointment")
+    public String makeAppointment(Model model) {
         if(p == null) {
             Authentication getCurrentLoginContext = SecurityContextHolder.getContext().getAuthentication();
             p = myUserDetailsService.getPatientByUser((MyUserDetails) getCurrentLoginContext.getPrincipal());
         }
         Appointment appointment = new Appointment("1.06", d, p, e);
-        //appointment.setId(10);
-        System.out.println(appointment.toString());
         appointmentRepository.save(appointment);
         return "redirect:/user";
+    }
+
+    @GetMapping("/appointments/delete-appointment")
+    public String deleteAppointment(Model model) {
+        int amountOfDeletedRows = appointmentRepository.deleteAppointmentById(Integer.parseInt(appointmentIdToBeDeleted));
+        if(amountOfDeletedRows>0) {
+            return "redirect:/clinic-worker";
+        }
+        else {
+            return "redirect:/user";
+        }
+    }
+
+    @GetMapping("/appointments/appointment-selection")
+    public String selectAppointment(Model model) {
+        List<Appointment> appointments = appointmentRepository.findAppointmentsByPatientId(p);
+        model.addAttribute("appointments", appointments);
+        model.addAttribute("selectedAppointment", new DataReader());
+
+        return "patient-appointments-view";
+    }
+
+    @PostMapping("/appointments/appointment-selection")
+    public String deleteAppointmentAndRedirectToClinicWorkerView(@ModelAttribute DataReader data, Model model) {
+        appointmentIdToBeDeleted = data.getData();
+        System.out.println("ID WIZYTY" + appointmentIdToBeDeleted);
+        return "redirect:/appointments/delete-appointment";
     }
 
 
