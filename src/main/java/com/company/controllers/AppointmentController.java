@@ -9,6 +9,7 @@ import com.company.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class AppointmentController {
@@ -42,7 +46,7 @@ public class AppointmentController {
     private LocalDate d;
     private String lastName;
     private String appointmentIdToBeDeleted;
-    private boolean isMakeAppointmentClicked;
+    private int choice = -1;
     private boolean badDate = false;
 
     @GetMapping("/clinic-worker")
@@ -53,23 +57,43 @@ public class AppointmentController {
 
     @PostMapping("/clinic-worker")
     public String clinicWorkerChoice(@ModelAttribute DataReader data, Model model) {
-        isMakeAppointmentClicked = Boolean.parseBoolean(data.getData());
+        choice = Integer.parseInt(data.getData());
         return "redirect:/appointments/patient-last-name-input";
     }
 
     @GetMapping("/patient")
     public String patientPanel(Model model) {
-        model.addAttribute("boolin", new DataReader());
+        model.addAttribute("choice", new DataReader());
+        model.addAttribute("choice2", choice);
         return "patient-start-view";
     }
 
     @PostMapping("/patient")
     public String patientChoice(@ModelAttribute DataReader data, Model model) {
-        isMakeAppointmentClicked = Boolean.parseBoolean(data.getData());
-        if(isMakeAppointmentClicked)
-            return "redirect:/appointments/doctor-selection";
+        if(data.getData()!=null)
+            choice = Integer.parseInt(data.getData());
         else
-            return "redirect:/appointments/appointment-selection";
+            choice = 0;
+
+        switch(choice){
+            case 1:
+            {
+                return "redirect:/appointments/doctor-selection";
+            }
+            case 2:
+            {
+                return "redirect:/appointments/appointment-selection";
+            }
+            case 3:
+            {
+                return "redirect:/appointments/doctor-selection";
+            }
+            default:
+            {
+                return "redirect:/home";
+            }
+
+        }
     }
 
     @GetMapping("/appointments/patient-last-name-input")
@@ -96,10 +120,11 @@ public class AppointmentController {
     @PostMapping("/appointments/patient-selection")
     public String savePatientAndRedirectToDoctorSelection(@ModelAttribute DataReader data, Model model) {
         p = patientRepository.findPatientById(Integer.parseInt(data.getData()));
-        if(isMakeAppointmentClicked)
+        if(choice==0)
             return "redirect:/appointments/doctor-selection";
-        else
+        if(choice == 1)
             return "redirect:/appointments/appointment-selection";
+        return null;
     }
 
     @GetMapping("/appointments/doctor-selection")
@@ -152,7 +177,11 @@ public class AppointmentController {
             Authentication getCurrentLoginContext = SecurityContextHolder.getContext().getAuthentication();
             p = myUserDetailsService.getPatientByUser((MyUserDetails) getCurrentLoginContext.getPrincipal());
         }
-        Appointment appointment = new Appointment("1.06", d, p, e);
+        List<String> roomNumbers= Arrays.asList("0.1", "0.2", "0.3", "1.1", "1.2", "1.3", "2.1", "2.2", "2.3");
+        Random rand = new Random();
+        String randRoomNumber = roomNumbers.get(rand.nextInt(roomNumbers.size()));
+
+        Appointment appointment = new Appointment(randRoomNumber, d, p, e);
         Appointment a = appointmentRepository.save(appointment);
         if(a != null)
             return "redirect:/appointments/success";
