@@ -38,8 +38,21 @@ public class AppointmentController {
 
     @PostMapping("/clinic-worker")
     public String clinicWorkerChoice(@ModelAttribute DataReader data, Model model) {
-        choice = Integer.parseInt(data.getData());
-        return "redirect:/appointments/patient-last-name-input";
+        if (data.getData() != null)
+            choice = Integer.parseInt(data.getData());
+        else
+            choice = 0;
+
+        switch(choice) {
+            case 1:
+                return "redirect:/appointments/patient-last-name-input";
+            case 2:
+                return "redirect:/appointments/patient-last-name-input";
+            case 3:
+                return "redirect:/clinic/create-patient/has-pesel";
+            default:
+                return "redirect:/home";
+        }
     }
 
     @GetMapping("/patient")
@@ -97,9 +110,9 @@ public class AppointmentController {
     public String savePatientAndRedirectToDoctorSelection(@ModelAttribute DataReader data, Model model) {
         p = appointmentHandler.getPatient(data.getData());
 
-        if (choice == 0)
-            return "redirect:/appointments/doctor-selection";
         if (choice == 1)
+            return "redirect:/appointments/doctor-selection";
+        if (choice == 2)
             return "redirect:/appointments/appointment-selection";
         return null;
     }
