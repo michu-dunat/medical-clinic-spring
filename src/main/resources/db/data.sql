@@ -1,10 +1,10 @@
-INSERT INTO "appointments" (id, room_number, date, patientsid, employeesid) VALUES (1, '1.06', '2020-12-20', 1, 'D001');
-INSERT INTO "appointments" (id, room_number, date, patientsid, employeesid) VALUES (2, '0.04', '2020-11-30', 2, 'D001');
-INSERT INTO "appointments" (id, room_number, date, patientsid, employeesid) VALUES (3, '0.10', '2020-12-01', 3, 'D002');
-INSERT INTO public.appointments (id, room_number, date, patientsid, employeesid) VALUES (4, '0.10', '2020-12-01', 4, 'D002');
-INSERT INTO public.appointments (id, room_number, date, patientsid, employeesid) VALUES (5, '0.12', '2020-12-01', 5, 'D003');
-INSERT INTO public.appointments (id, room_number, date, patientsid, employeesid) VALUES (6, '1.23', '2020-12-02', 6, 'D003');
-INSERT INTO public.appointments (id, room_number, date, patientsid, employeesid) VALUES (7, '1.21', '2020-12-02', 7, 'D002');
+INSERT INTO "appointments" (id, room_number, date, patientsid, employeesid) VALUES (1, '1.06', '2021-02-20', 1, 'D001');
+INSERT INTO "appointments" (id, room_number, date, patientsid, employeesid) VALUES (2, '0.04', '2021-01-30', 2, 'D001');
+INSERT INTO "appointments" (id, room_number, date, patientsid, employeesid) VALUES (3, '0.10', '2021-02-01', 3, 'D002');
+INSERT INTO public.appointments (id, room_number, date, patientsid, employeesid) VALUES (4, '0.10', '2021-02-01', 4, 'D002');
+INSERT INTO public.appointments (id, room_number, date, patientsid, employeesid) VALUES (5, '0.12', '2021-02-04', 5, 'D003');
+INSERT INTO public.appointments (id, room_number, date, patientsid, employeesid) VALUES (6, '1.23', '2021-01-22', 6, 'D003');
+INSERT INTO public.appointments (id, room_number, date, patientsid, employeesid) VALUES (7, '1.21', '2021-01-11', 7, 'D002');
 
 
 --
@@ -117,17 +117,17 @@ INSERT INTO public.orders_services (ordersid, servicesid) VALUES (7, 5);
 -- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (1, 'Paweł', 'Maciończyk', '1999-09-08', NULL, 'Tęczowa 42', 'Wrocław', '43-534', NULL, NULL, NULL, '692435642', NULL, NULL, 1, NULL);
+INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (1, 'Paweł', 'Maciończyk', '1999-09-08', 'A+', 'Tęczowa 42', 'Wrocław', '43-534', NULL, NULL, NULL, '692435642', NULL, NULL, 1, true);
 INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (2, 'Piotr', 'Gorczyca', '2002-10-18', NULL, 'Miła 89', 'Zielona Góra', '34-535', NULL, NULL, NULL, '987234123', NULL, NULL, 2, NULL);
-INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (3, 'Beata', 'Trytkiewicz', '1980-01-12', NULL, 'Wesoła 23', 'Poznań', '53-324', NULL, NULL, NULL, '984345324', NULL, NULL, 3, NULL);
+INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (3, 'Beata', 'Trytkiewicz', '1980-01-12', NULL, 'Wesoła 23', 'Poznań', '53-324', NULL, NULL, NULL, '984345324', NULL, NULL, 3, false);
 INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (4, 'Paulina', 'Lisowska', '1940-05-20', NULL, 'Krótka 45', 'Gdańsk', '53-23', NULL, NULL, NULL, '9843425324', NULL, NULL, 6, NULL);
-INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (5, 'Dawid', 'Dopurt', '1990-08-22', NULL, 'Ciasna 5', 'Warszawa', '51-23', NULL, NULL, NULL, '9843425324', NULL, NULL, 10, NULL);
+INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (5, 'Dawid', 'Dopurt', '1990-08-22', 'B-', 'Ciasna 5', 'Warszawa', '51-23', NULL, NULL, NULL, '9843425324', NULL, NULL, 10, false);
 INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (6, 'Marcin', 'Marek', '1992-09-02', NULL, 'Długa 48', 'Warszawa', '41-223', NULL, NULL, NULL, '1234425324', NULL, NULL, 14, NULL);
-INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (7, 'Marcin', 'Polański', '1999-02-07', NULL, 'Śmieszna 28', 'Rybnik', '40-273', NULL, NULL, NULL, '6798432412', NULL, NULL, 15, NULL);
-INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (8, 'Teresa', 'Pawłowska', '1959-02-07', 'A+', '3. Maja 28', 'Wrocław', '44-273', NULL, NULL, NULL, '6798400212', NULL, NULL, 17, NULL);
+INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (7, 'Marcin', 'Polański', '1999-02-07', 'AB+', 'Śmieszna 28', 'Rybnik', '40-273', NULL, NULL, NULL, '6798432412', NULL, NULL, 15, NULL);
+INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (8, 'Teresa', 'Pawłowska', '1959-02-07', 'A+', '3. Maja 28', 'Wrocław', '44-273', NULL, NULL, NULL, '6798400212', NULL, NULL, 17, true);
 INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (9, 'Jolanta', 'Mytek', '1998-07-03', NULL, 'Wąska 28/5', 'Katowice', '40-222', NULL, NULL, NULL, '6742344123', NULL, NULL, 18, true);
 INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (10, 'Tomasz', 'Tomczyk', '1978-01-01', NULL, 'Szeroka 23d', 'Wrocław', '50-222', NULL, NULL, NULL, '600044123', NULL, 'tomtom@gmail.com', 19, NULL);
-INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (11, 'Renata', 'Biedronka', '1942-04-30', '0-', 'Żółta 1d', 'Katowice', '44-222', NULL, NULL, NULL, '609000233', NULL, NULL, 21, NULL);
+INSERT INTO public.patients (id, first_name, last_name, birth_date, blood_type, address, city, postcode, permanent_address, pemanent_city, permanent_postcode, phone_number, contact_phone, email_address, usersid, notifications_status) VALUES (11, 'Renata', 'Biedronka', '1942-04-30', '0-', 'Żółta 1d', 'Katowice', '44-222', NULL, NULL, NULL, '609000233', NULL, NULL, 21, true);
 
 
 --
