@@ -9,12 +9,18 @@
     Panel pacjenta.
 </h1>
 
-<form action="#" th:action="@{/patient}" th:object="${boolin}" method="post">
-    <p>
-        <input type="radio" value="true" th:id="true" th:name="true" th:field="${boolin.data}">Umów wizytę
+<form action="#" th:action="@{/patient}" th:object="${choice}" method="post">
+    <p th:if="${choice2==0}">
+        Nie wybrano żadnej opcji.
     </p>
     <p>
-        <input type="radio" value="false" th:id="false" th:name="false" th:field="${boolin.data}">Odwołaj wizytę
+        <input type="radio" value="1" th:id="make" th:name="radio" th:field="${choice.data}">Umów wizytę
+    </p>
+    <p>
+        <input type="radio" value="2" th:id="cancel" th:name="radio" th:field="${choice.data}">Odwołaj wizytę
+    </p>
+    <p>
+        <input type="radio" value="3" th:id="see" th:name="radio" th:field="${choice.data}">Przeglądaj umówione wizyty
     </p>
     <p>
         <input type="submit" value="Przejdź dalej">
