@@ -2,14 +2,14 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Panel pracownika przychodni.</title>
+    <title>Panel pacjenta.</title>
 </head>
 <body>
 <h1>
-    Panel pracownika przychodni.
+    Panel pacjenta.
 </h1>
 
-<form action="#" th:action="@{/clinic-worker}" th:object="${boolin}" method="post">
+<form action="#" th:action="@{/patient}" th:object="${boolin}" method="post">
     <p>
         <input type="radio" value="true" th:id="true" th:name="true" th:field="${boolin.data}">Umów wizytę
     </p>
