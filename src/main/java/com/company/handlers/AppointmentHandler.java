@@ -1,5 +1,6 @@
 package com.company.handlers;
 
+import com.company.factories.AppointmentFactory;
 import com.company.model.Appointment;
 import com.company.model.Employee;
 import com.company.model.MyUserDetails;
@@ -55,10 +56,14 @@ public class AppointmentHandler {
         return appointmentRepository.deleteAppointmentById(Integer.parseInt(appointmentIdToBeDeleted));
     }
 
-    public Appointment createAppointment(Patient patient, Employee doctor, LocalDate date) {
+    public Appointment saveAppointment(Patient patient, Employee doctor, LocalDate date) {
         Random rand = new Random();
         String randRoomNumber = roomNumbers.get(rand.nextInt(roomNumbers.size()));
-        Appointment appointment = new Appointment(randRoomNumber, date, patient, doctor);
+        Appointment appointment = AppointmentFactory.createAppointment();
+        appointment.setPatientId(patient);
+        appointment.setEmployeeId(doctor);
+        appointment.setDate(date);
+        appointment.setRoomNumber(randRoomNumber);
         return appointmentRepository.save(appointment);
     }
 
