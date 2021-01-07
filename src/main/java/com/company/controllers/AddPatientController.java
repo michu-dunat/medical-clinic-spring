@@ -54,16 +54,12 @@ public class AddPatientController {
 
             User usr = userRepository.getUserByPesel(pesel).orElseGet(User::new);
             System.out.println(usr.toString());
-            //TODO Tutaj trzeba dalej dorobić
-
             if (!(usr.getRole() == null)){
                 return "redirect:/clinic/create-patient/already-exists";
             }
             else {
-
                 this.user.setPesel(pesel);
                 return "redirect:/clinic/create-patient/enter-data-with-pesel";
-
             }
         }
         else if(checked){
@@ -91,9 +87,13 @@ public class AddPatientController {
         this.patient1 = patient;
         this.user.setPesel(this.pesel);
         this.user.setRole(roleRepository.getRolesById(2));
-        this.user.setUsername(this.patient1.getFirstName().substring(0,3) + this.patient1.getLastName().substring(0,3));
+        this.user.setUsername(this.patient1.getFirstName().substring(0,3) + this.patient1.getLastName().substring(0,3) + user.getPesel());
         this.user.setPassword(""+this.patient1.getFirstName().charAt(0) + this.patient1.getLastName().charAt(0) + user.getPesel());
-        return "redirect:/admin";
+        this.patient1.setNotificationStatus(true);
+        userRepository.save(this.user);
+        this.patient1.setUserId(this.user);
+        patientRepository.save(this.patient1);
+        return "redirect:/appointments/success";
     }
 
     @GetMapping("/clinic/create-patient/enter-data-without-pesel")
@@ -108,14 +108,13 @@ public class AddPatientController {
         System.out.println("POST");
         this.patient1 = patient;
         this.user.setRole(roleRepository.getRolesById(2));
-        this.user.setUsername(this.patient1.getFirstName().substring(0,4) + this.patient1.getLastName().substring(0,3));
+        this.user.setUsername(this.patient1.getFirstName().substring(0,4) + this.patient1.getLastName().substring(0,3) + patient.getPhoneNumber());
         this.user.setPassword(""+this.patient1.getFirstName().charAt(0) + this.patient1.getLastName().charAt(0) + patient.getPhoneNumber());
-        System.out.println(user.toString());
         this.patient1.setNotificationStatus(true);
         userRepository.save(this.user);
         this.patient1.setUserId(this.user);
         patientRepository.save(this.patient1);
 
-        return "redirect:/admin";
+        return "redirect:/appointments/success";
     }
 }
