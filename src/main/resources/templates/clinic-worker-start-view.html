@@ -11,14 +11,18 @@
 
 <form action="#" th:action="@{/clinic-worker}" th:object="${boolin}" method="post">
     <p>
-        <input type="radio" value="true" th:id="true" th:name="true" th:field="${boolin.data}">Umów wizytę
+        <input type="radio" value="1" th:id="true" th:name="radio" th:field="${boolin.data}">Umów wizytę
     </p>
     <p>
-        <input type="radio" value="false" th:id="false" th:name="false" th:field="${boolin.data}">Odwołaj wizytę
+        <input type="radio" value="2" th:id="false" th:name="radio" th:field="${boolin.data}">Odwołaj wizytę
+    </p>
+    <p>
+        <input type="radio" value="3" th:id="true" th:name="radio" th:field="${boolin.data}">Dodaj pacjenta
     </p>
     <p>
         <input type="submit" value="Przejdź dalej">
     </p>
+
 
 </form>
 
