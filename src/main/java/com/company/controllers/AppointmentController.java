@@ -43,6 +43,7 @@ public class AppointmentController {
     private String lastName;
     private String appointmentIdToBeDeleted;
     private boolean isMakeAppointmentClicked;
+    private boolean badDate = false;
 
     @GetMapping("/clinic-worker")
     public String clinicWorkerPanel(Model model) {
@@ -123,6 +124,7 @@ public class AppointmentController {
     public String chooseDate(Model model) {
         model.addAttribute("doc", e);
         model.addAttribute("selectedDate", new DataReader());
+        model.addAttribute("badDate", badDate);
 
         return "calendar";
     }
@@ -130,6 +132,14 @@ public class AppointmentController {
     @PostMapping("/appointments/date-selection")
     public String showEverything(@ModelAttribute DataReader data, Model model) {
         d = LocalDate.parse(data.getData());
+        if(d.isBefore(LocalDate.now()))
+        {
+            badDate = true;
+            return "redirect:/appointments/date-selection";
+        }
+        else
+            badDate = false;
+
         if(appointmentHandler.isAbleToCreateAppointmentOnDate(d, e))
             return "redirect:/appointments/make-appointment";
         else
@@ -157,6 +167,7 @@ public class AppointmentController {
             p = myUserDetailsService.getPatientByUser((MyUserDetails) getCurrentLoginContext.getPrincipal());
         }
         List<Appointment> appointments = appointmentRepository.findAppointmentsByPatientId(p);
+        appointments.removeIf(ap -> ap.getDate().isBefore(LocalDate.now()));
         model.addAttribute("appointments", appointments);
         model.addAttribute("selectedAppointment", new DataReader());
 

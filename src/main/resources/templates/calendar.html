@@ -18,5 +18,9 @@
             <input type="button" value="Cofnij" onclick="history.back()">
         </form>
     </div>
+
+    <p th:if="${badDate}">
+        Wybrano złą datę, spróbuj ponownie.
+    </p>
 </body>
 </html>
