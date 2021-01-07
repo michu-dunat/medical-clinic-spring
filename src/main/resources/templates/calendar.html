@@ -15,6 +15,7 @@
         <form action="#" th:action="@{/appointments/date-selection}" method="post" th:object="${selectedDate}">
             <input type="date" th:field="${selectedDate.data}">
             <input type="submit" value="Wybierz">
+            <input type="button" value="Cofnij" onclick="history.back()">
         </form>
     </div>
 </body>

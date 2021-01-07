@@ -2,7 +2,7 @@ package com.company.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -24,7 +24,7 @@ public class Patient {
 
     @NotNull(message = "birth date cannot be null!")
     @Column(name = "birth_date")
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "blood_type")
     private String bloodType;
@@ -90,7 +90,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(final String firstName, final String lastName, final LocalDateTime birthDate,
+    public Patient(final String firstName, final String lastName, final LocalDate birthDate,
                    final String bloodType, final String address, final String city, final String postcode,
                    final String permanentAddress, final String permanentCity, final String permanentPostcode,
                    final String phoneNumber, final String contactPhone, final String emailAddress,
@@ -128,11 +128,11 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public LocalDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDateTime birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
