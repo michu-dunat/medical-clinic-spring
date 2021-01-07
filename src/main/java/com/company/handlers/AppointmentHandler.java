@@ -1,25 +1,24 @@
 package com.company.handlers;
 
 import com.company.model.Appointment;
-import com.company.model.DataReader;
 import com.company.model.Employee;
+import com.company.model.MyUserDetails;
 import com.company.model.Patient;
 import com.company.repositories.AppointmentRepository;
 import com.company.repositories.EmployeeRepository;
 import com.company.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class AppointmentHandler {
-
-    DataReader dataReader;
-    Appointment appointment;
-    private int maxAmountOfAppointments = 1;
 
     @Autowired
     AppointmentRepository appointmentRepository;
@@ -29,6 +28,9 @@ public class AppointmentHandler {
 
     @Autowired
     PatientRepository patientRepository;
+
+    private final int maxAmountOfAppointments = 1;
+    private final List<String> roomNumbers = Arrays.asList("0.1", "0.2", "0.3", "1.1", "1.2", "1.3", "2.1", "2.2", "2.3");
 
     public List<Employee> browseDoctors() {
 
@@ -44,41 +46,41 @@ public class AppointmentHandler {
         return patients;
     }
 
-    //old List<Term> browseCalendar(LocalDate date, Employee doctor)
     public boolean isAbleToCreateAppointmentOnDate(LocalDate date, Employee doctor) {
         int amountOfAppointments = appointmentRepository.countAppointmentsByEmployeeIdAndAndDate(doctor, date);
-        if (amountOfAppointments >= maxAmountOfAppointments)
-            return false;
-        else
-            return true;
+        return amountOfAppointments < maxAmountOfAppointments;
     }
 
-    public List<Appointment> isAbleToCreateAppointmentOnDate(Patient patient) {
-        return null;
+    public int deleteAppointment(String appointmentIdToBeDeleted) {
+        return appointmentRepository.deleteAppointmentById(Integer.parseInt(appointmentIdToBeDeleted));
     }
 
-    /*public Term initializeTermSelection(List<Term> termsList, Employee doctor, Patient patient) {
-        return null;
-    }*/
-
-    public Appointment initializeAppointmentSelection(List<Appointment> patientAppointments) {
-        return null;
+    public Appointment createAppointment(Patient patient, Employee doctor, LocalDate date) {
+        Random rand = new Random();
+        String randRoomNumber = roomNumbers.get(rand.nextInt(roomNumbers.size()));
+        Appointment appointment = new Appointment(randRoomNumber, date, patient, doctor);
+        return appointmentRepository.save(appointment);
     }
 
-    public boolean approveAppointment() {
-        return false;
+    public List<Appointment> browseCalendar(Patient patient) {
+        List<Appointment> appointments = appointmentRepository.findAppointmentsByPatientId(patient);
+        appointments.removeIf(ap -> ap.getDate().isBefore(LocalDate.now()));
+        return appointments;
     }
 
-    public boolean deleteAppointment(Appointment appointment) {
-        return false;
+    public Patient getPatient(String patientId) {
+        return patientRepository.findPatientById(Integer.parseInt(patientId));
     }
 
-    /*public List<Term> makeListOfAvailableTerms(List<Appointment> employeeAppointmentsOnDate) {
-        return null;
+    public Employee getDoctor(String doctorId) {
+        return employeeRepository.findEmployeeById(doctorId);
     }
 
-    public Appointment createAppointment(Patient patient, Employee doctor, Term term) {
-        return null;
-    }*/
+    public Patient getPatientIfPatientLoggedIn() {
+        Authentication getCurrentLoginContext = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails user = (MyUserDetails) getCurrentLoginContext.getPrincipal();
+        Patient patient = patientRepository.findPatientByUserId(user.getUser());
+        return patient;
+    }
 
 }

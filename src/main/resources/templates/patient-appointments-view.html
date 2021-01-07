@@ -8,35 +8,29 @@
     <h1>
         Wizyty wybranego pacjenta:
     </h1>
-    <form action="#" th:action="@{/appointments/appointment-selection}" th:object="${selectedAppointment}" method="post">
-        <table>
-            <thead>
-            <tr>
-                <th> Imię i nazwisko lekarza</th>
-                <th> Specjalizacja </th>
-                <th> Data </th>
-                <th> Numer pokoju </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${appointments.isEmpty()}">
-                <td colspan="2"> Brak wizyt tego pacjenta. </td>
-            </tr>
-            <tr th:if="${appointments.size()>0}" th:each="appointment : ${appointments}">
-                <td><input type="radio" name="doctorRadio" th:value="${appointment.id}" th:field="${selectedAppointment.data}"><span th:text="${appointment.getEmployeeId().getFirstName()} + ' ' + ${appointment.getEmployeeId().getLastName()}"> Imię i nazwisko lekarza </span></td>
-                <td><span th:text="${appointment.getEmployeeId().getSpecialisation()}"> Specjalizacja </span></td>
-                <td><span th:text="${appointment.getDate()}"> Data wizyty </span></td>
-                <td><span th:text="${appointment.getRoomNumber()}"> Numer pokoju </span></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <p th:if="${appointments.isEmpty()}">
-            <input type="button" value="Cofnij" onclick="history.back()">
-        </p>
-        <p th:if="${appointments.size()>0}">
-            <input type="submit" value="Wybierz">
-        </p>
-    </form>
+    <table>
+        <thead>
+        <tr>
+            <th> Imię i nazwisko lekarza</th>
+            <th> Specjalizacja </th>
+            <th> Data </th>
+            <th> Numer pokoju </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${appointments.isEmpty()}">
+            <td colspan="2"> Brak wizyt tego pacjenta. </td>
+        </tr>
+        <tr th:if="${appointments.size()>0}" th:each="appointment : ${appointments}">
+            <td><span th:text="${appointment.getEmployeeId().getFirstName()} + ' ' + ${appointment.getEmployeeId().getLastName()}"> Imię i nazwisko lekarza </span></td>
+            <td><span th:text="${appointment.getEmployeeId().getSpecialisation()}"> Specjalizacja </span></td>
+            <td><span th:text="${appointment.getDate()}"> Data wizyty </span></td>
+            <td><span th:text="${appointment.getRoomNumber()}"> Numer pokoju </span></td>
+        </tr>
+        </tbody>
+</table>
+    <p>
+        <input type="button" value="Cofnij" onclick="history.back()">
+    </p>
 </body>
 </html>
