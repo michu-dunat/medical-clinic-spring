@@ -1,5 +1,7 @@
 package com.company.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -10,7 +12,10 @@ import java.util.List;
 public class Patient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="patients_id_seq",
+            sequenceName = "patients_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patients_id_seq")
     @Column(name = "id")
     private int id;
 
@@ -22,6 +27,7 @@ public class Patient {
     @Column(name = "last_name")
     private String lastName;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "birth date cannot be null!")
     @Column(name = "birth_date")
     private LocalDate birthDate;
@@ -134,6 +140,10 @@ public class Patient {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Boolean getNotificationStatus() {
+        return notificationStatus;
     }
 
     public String getBloodType() {
@@ -257,9 +267,10 @@ public class Patient {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", contactPhone='" + contactPhone + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
-                ", userId=" + userId.getId() +
+                //", userId=" + userId.getId() +
                 ", notificationStatus=" + notificationStatus +
                 '}';
     }
+
 }
 

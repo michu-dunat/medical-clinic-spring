@@ -189,8 +189,8 @@ INSERT INTO public.roles (id, role) VALUES (5,'ROLE_DOCTOR');
 
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (1, 'PawMac', 'haslo', 2, '98048421543');
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (2, 'PioGor', 'haslo', 2, '98048434543');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (3, 'BeaTry', '123', 2, '99048434543');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (4, 'KamHul', 'XDDD', 5, NULL);
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (3, 'BeaTry', '123', 2,   '99048434543');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (4, 'KamHul', 'XDDD', 5,  NULL);
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (5, 'admin', 'admin', 1, NULL);
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (7, 'KarOls', 'haslohaslo', 3, NULL);
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (8, 'MicDun', 'wow102', 3, NULL);
@@ -198,15 +198,15 @@ INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (9, 'Bł
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (11, 'ArtSol', 'costam', 5, NULL);
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (13, 'MonMak', 'haha', 5, NULL);
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (16, 'MarWoj', 'qazwsxedc', 5, NULL);
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (6, 'PauLis', '123512', 2, '00290112345');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (10, 'DawDop', 'slask', 2, '7032432532443');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (12, 'HelHaw', 'polskapolska', 4, '532413243413');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (14, 'MarMat', 'qwerty', 2, '432141234324');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (15, 'MarPol', 'poqlrk', 2, '9512435132412');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (17, 'TerPaw', 'kocimietka', 2, '12345678901');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (18, 'JolMyt', 'piesikot', 2, '98765432123');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (19, 'TomTom', 'porsche', 2, '95124509823');
-INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (20, 'RenBie', 'polololo', 2, '4323122456');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (6, 'PauLis', '123512', 2,'00290112345');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (10, 'DawDop', 'slask', 2,'70324325324');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (12, 'HelHaw', 'polskapolska', 4,'53241324341');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (14, 'MarMat', 'qwerty', 2,'43214123432');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (15, 'MarPol', 'poqlrk', 2,'95124351324');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (17, 'TerPaw', 'kocimietka', 2,'12345678901');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (18, 'JolMyt', 'piesikot', 2,'98765432123');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (19, 'TomTom', 'porsche', 2,'95124509823');
+INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (20, 'RenBie', 'polololo', 2,'43231224567');
 INSERT INTO public.users (id, username, password, roleid, pesel) VALUES (21, 'AdrZys', 'fajnehaslo', 5, NULL);
 
 

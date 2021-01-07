@@ -311,7 +311,7 @@ CREATE TABLE public.patients (
     email_address character varying(150),
     usersid integer NOT NULL,
     notifications_status boolean,
-    CONSTRAINT patients_blood_type CHECK (((blood_type)::text = ANY ((ARRAY['A+'::character varying, 'A-'::character varying, 'B+'::character varying, 'B-'::character varying, '0+'::character varying, '0-'::character varying, 'AB+'::character varying, 'AB-'::character varying])::text[])))
+    CONSTRAINT patients_blood_type CHECK (((blood_type)::text = ANY ((ARRAY['A+'::character varying, 'A-'::character varying, 'B+'::character varying, 'B-'::character varying, '0+'::character varying, '0-'::character varying, 'AB+'::character varying, 'AB-'::character varying, NULL])::text[])))
 );
 
 

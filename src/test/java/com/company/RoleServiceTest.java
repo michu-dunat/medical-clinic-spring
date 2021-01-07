@@ -24,4 +24,10 @@ public class RoleServiceTest {
         var payments = (List<Role>) roleService.findAll();
         System.out.println(payments.get(0));
     }
+
+    @Test
+    public void findByIdTest(){
+        var role = roleService.findbyId(2);
+        System.out.println(role.getRole());
+    }
 }

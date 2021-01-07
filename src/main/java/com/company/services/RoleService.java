@@ -15,8 +15,13 @@ public class RoleService {
 
     public List<Role> findAll() {
 
-        var roles = (List<Role>) repository.findAll();
+        var roles = repository.findAll();
 
         return roles;
+    }
+
+    public Role findbyId(int id){
+        var x = repository.getRolesById(id);
+        return x;
     }
 }

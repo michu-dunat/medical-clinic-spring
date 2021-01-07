@@ -11,7 +11,10 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="users_id_seq",
+            sequenceName = "users_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
     @Column(name = "id")
     private int id;
 
@@ -20,7 +23,7 @@ public class User {
     private String username;
 
     @Column(name = "pesel")
-    private Long pesel;
+    private String pesel;
 
     @NotNull(message = "Account`s password must not be null!")
     @Column(name = "password")
@@ -39,7 +42,7 @@ public class User {
 
     public User() {}
 
-    public User(final String username, final Long pesel, final String password, final Role role) {
+    public User(final String username, final String pesel, final String password, final Role role) {
         this.pesel = pesel;
         this.username = username;
         this.password = password;
@@ -79,11 +82,11 @@ public class User {
         this.id = id;
     }
 
-    public Long getPesel() {
+    public String getPesel() {
         return pesel;
     }
 
-    public void setPesel(Long pesel) {
+    public void setPesel(String pesel) {
         this.pesel = pesel;
     }
 
