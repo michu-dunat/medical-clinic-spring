@@ -10,7 +10,7 @@
     <p>
         Wprowadź nazwisko pacjenta:
     </p>
-    <form action="#" th:action="@{/appointments/patient-last-name-input}" method="post" th:object="${lastName}">
+    <form action="#" th:action="@{/clinic/appointments/patient-last-name-input}" method="post" th:object="${lastName}">
         <input type="text" th:field="${lastName.data}">
         <p>
             <input type="submit" value="Przejdź dalej">

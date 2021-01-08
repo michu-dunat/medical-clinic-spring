@@ -40,18 +40,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/admin").permitAll()//.hasRole("ADMIN")
-                .antMatchers("/user").permitAll()//.hasAnyRole("ADMIN", "DOCTOR")
-                .antMatchers("/patient").hasRole("PATIENT")
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/appointment/**").hasAnyRole("ADMIN","CLINICWORKER","LABWORKER")
+                .antMatchers("/user").hasAnyRole("ADMIN", "DOCTOR", "PATIENT", "LABWORKER", "CLINICWORKER")
+                .antMatchers("/patient").hasAnyRole("PATIENT", "ADMIN")
                 .antMatchers("/clinic-worker").hasRole("CLINICWORKER")
-                .antMatchers("/loginxd").permitAll()
-                .antMatchers("/appointments/doctor-selection").permitAll()
-                .antMatchers("/greeting").permitAll()
-                .antMatchers("/appointments/term-selection").permitAll()
+                .antMatchers("/clinic/**").hasAnyRole("CLINICWORKER", "ADMIN")
+                .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/clinic/create-patient/enter-data").permitAll()
-                .antMatchers("/clinic/create-patient/has-pesel").permitAll()
-                .antMatchers("/clinic/create-patient/already-exists").permitAll()
                 .and().formLogin()
                 .successHandler(successHandler);
     }
@@ -61,13 +57,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-
         return daoAuthenticationProvider;
     }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
-
         return NoOpPasswordEncoder.getInstance();
         //return new BCryptPasswordEncoder();
     }
