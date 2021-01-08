@@ -15,8 +15,6 @@ import java.util.HashMap;
 @Service
 public class AddAccountHandler {
 
-    DataReader dataReader;
-    Patient patient;
     User user;
 
     @Autowired
@@ -27,31 +25,6 @@ public class AddAccountHandler {
 
     @Autowired
     RoleRepository roleRepository;
-
-    public long inputPESEL() {
-        return 0;
-    }
-
-    public long parsePESEL(String PESEL) {
-        long parsedPESEL = Long.getLong(PESEL);
-        return parsedPESEL;
-    }
-
-    public HashMap<String, String> inputPatientData() {
-        return null;
-    }
-
-    /*public boolean createAccount(HashMap<String, String> patientDataHashMap, long PESEL) {
-        return false;
-    }
-
-    public Patient createPatient(HashMap<String, String> patientDataHashMap) {
-        return null;
-    }
-
-    public User createUser(HashMap<String, String> patientDataHashMap) {
-        return null;
-    }*/
 
     public String validate(String PESEL){
         return PESEL;
