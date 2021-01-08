@@ -1,5 +1,7 @@
 package com.company.controllers;
 
+import com.company.factories.PatientFactory;
+import com.company.handlers.AddAccountHandler;
 import com.company.model.*;
 import com.company.repositories.PatientRepository;
 import com.company.repositories.RoleRepository;
@@ -10,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import com.company.factories.UserFactory;
 import java.time.LocalDate;
 
 @Controller
@@ -25,34 +27,32 @@ public class AddPatientController {
     @Autowired
     private PatientRepository patientRepository;
 
+    @Autowired
+    private AddAccountHandler addAccountHandler;
+
     private String pesel;
-    private User user = new User();
-    private Patient patient1 = new Patient();
+    private User user = UserFactory.createDummyUser();
+    private Patient patient1 = PatientFactory.createPatientForNewAccount();
     private boolean invalidData = false;
     private boolean invalidBirthDate = false;
 
     @GetMapping("/clinic/create-patient/has-pesel")
-    public String enterPesel(Model model){
+    public String inputPesel(Model model){
         model.addAttribute("dataReader", new DataReader());
-        return "check-pesel";
+        return "inputPESEL";
     }
 
     @PostMapping("/clinic/create-patient/has-pesel")
-    public String checkPeselAndRedirectToNextStage(@ModelAttribute DataReader dataReader, Model model){
+    public String validatePesel(@ModelAttribute DataReader dataReader, Model model){
         boolean checked = Boolean.parseBoolean(dataReader.getData());
+
         if(dataReader.getPesel().length() > 0 && checked){
-            pesel = dataReader.getPesel();
-
-
+            pesel = addAccountHandler.validate(dataReader.getPesel());
             //TODO walidacja numeru PESEL
-
-
-            User usr = userRepository.getUserByPesel(pesel).orElseGet(User::new);
-            if (!(usr.getRole() == null)){
+            if (addAccountHandler.checkIfUserExistsWithGivenPESEL(pesel)){
                 return "redirect:/clinic/create-patient/already-exists";
-            }
-            else {
-                this.user.setPesel(pesel);
+            }else {
+                user.setPesel(pesel);
                 return "redirect:/clinic/create-patient/enter-data-with-pesel";
             }
         }
@@ -62,7 +62,6 @@ public class AddPatientController {
         else{
             return "redirect:/clinic/create-patient/enter-data-without-pesel";
         }
-
     }
 
     @GetMapping("/clinic/create-patient/already-exists")
@@ -80,9 +79,9 @@ public class AddPatientController {
     }
 
     @PostMapping("/clinic/create-patient/enter-data-with-pesel")
-    public String checkAndAddPatientsData(@ModelAttribute Patient patient, Model model){
+    public String inputPatientData(@ModelAttribute Patient patient, Model model) throws Exception {
         this.patient1 = patient;
-        this.user.setPesel(this.pesel);
+        //this.user.setPesel(this.pesel);
         if (patient1.getFirstName().isEmpty() || patient1.getLastName().isEmpty() || patient1.getBirthDate() == null || patient1.getCity().isEmpty() || patient1.getPostcode().isEmpty() || patient1.getPhoneNumber().isEmpty()){
             invalidData = true;
             invalidBirthDate = false;
@@ -92,22 +91,18 @@ public class AddPatientController {
             invalidData = false;
         }
         else{
-            System.out.println(3);
             this.invalidData = false;
             this.invalidBirthDate = false;
         }
-
         if(!(invalidBirthDate || invalidData)) {
-            this.user.setRole(roleRepository.getRolesById(2));
-            this.user.setUsername(this.patient1.getFirstName().substring(0, 3) + this.patient1.getLastName().substring(0, 3) + user.getPesel());
-            this.user.setPassword("" + this.patient1.getFirstName().charAt(0) + this.patient1.getLastName().charAt(0) + user.getPesel());
-            this.patient1.setNotificationStatus(true);
-            userRepository.save(this.user);
-            this.patient1.setUserId(this.user);
-            patientRepository.save(this.patient1);
-            patient1 = new Patient();
-            user = new User();
-            return "redirect:/appointments/success";
+            boolean saveAccountStatus = addAccountHandler.createAccount(this.patient1, this.user);
+            if (saveAccountStatus) {
+                patient1 = PatientFactory.createPatientForNewAccount();
+                user = UserFactory.createDummyUser();
+                return "redirect:/appointments/success";
+            }
+            else return "redirect:/failure";
+
         }else {
             return "redirect:/clinic/create-patient/enter-data-with-pesel";
         }
@@ -123,11 +118,9 @@ public class AddPatientController {
     }
 
     @PostMapping("/clinic/create-patient/enter-data-without-pesel")
-    public String checkAndAddPatientDataNoPesel(@ModelAttribute Patient patient , Model model){
+    public String inputPatientDataNoPesel(@ModelAttribute Patient patient , Model model) throws Exception {
         System.out.println("POST");
         this.patient1 = patient;
-        System.out.println("P0" + patient.toString());
-        System.out.println("P1" + patient1.toString());
         if (patient1.getFirstName().isEmpty() || patient1.getLastName().isEmpty() || patient1.getBirthDate() == null || patient1.getCity().isEmpty() || patient1.getPostcode().isEmpty() || patient1.getPhoneNumber().isEmpty()){
             invalidData = true;
             invalidBirthDate = false;
@@ -137,22 +130,18 @@ public class AddPatientController {
             invalidData = false;
         }
         else{
-            System.out.println(3);
             this.invalidData = false;
             this.invalidBirthDate = false;
         }
 
         if(!(invalidBirthDate || invalidData)) {
-            this.user.setRole(roleRepository.getRolesById(2));
-            this.user.setUsername(this.patient1.getFirstName().substring(0, 3) + this.patient1.getLastName().substring(0, 3) + patient1.getPhoneNumber().substring(2, 7));
-            this.user.setPassword("" + this.patient1.getFirstName().charAt(0) + this.patient1.getLastName().charAt(0) + patient1.getPhoneNumber().substring(2, 7));
-            this.patient1.setNotificationStatus(true);
-            userRepository.save(this.user);
-            this.patient1.setUserId(this.user);
-            patientRepository.save(this.patient1);
-            patient1 = new Patient();
-            user = new User();
-            return "redirect:/appointments/success";
+            boolean saveAccountStatus = addAccountHandler.createAccount(this.patient1, this.user);
+            if (saveAccountStatus) {
+                patient1 = PatientFactory.createPatientForNewAccount();
+                user = UserFactory.createDummyUser();
+                return "redirect:/appointments/success";
+            }
+            else return "redirect:/failure";
         }
         else {
             return "redirect:/clinic/create-patient/enter-data-without-pesel";

@@ -96,6 +96,28 @@ public class Patient {
     public Patient() {
     }
 
+    public Patient(boolean notificationStatus) {
+        this.notificationStatus = notificationStatus;
+    }
+
+    public Patient(Patient p){
+        this.firstName = p.getFirstName();
+        this.lastName = p.getLastName();
+        this.birthDate = p.getBirthDate();
+        this.bloodType = p.getBloodType();
+        this.address = p.getAddress();
+        this.city = p.getCity();
+        this.postcode = p.getPostcode();
+        this.permanentAddress = p.getPermanentAddress();
+        this.permanentCity = p.getPermanentCity();
+        this.permanentPostcode = p.getPermanentPostcode();
+        this.phoneNumber = p.getPhoneNumber();
+        this.contactPhone = p.getContactPhone();
+        this.emailAddress = p.getEmailAddress();
+        this.userId = p.getUserId();
+        this.notificationStatus = p.getNotificationStatus();
+    }
+
     public Patient(final String firstName, final String lastName, final LocalDate birthDate,
                    final String bloodType, final String address, final String city, final String postcode,
                    final String permanentAddress, final String permanentCity, final String permanentPostcode,
@@ -267,7 +289,6 @@ public class Patient {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", contactPhone='" + contactPhone + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
-                //", userId=" + userId.getId() +
                 ", notificationStatus=" + notificationStatus +
                 '}';
     }
