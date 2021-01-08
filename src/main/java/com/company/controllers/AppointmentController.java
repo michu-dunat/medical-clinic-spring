@@ -45,9 +45,9 @@ public class AppointmentController {
 
         switch(choice) {
             case 1:
-                return "redirect:/appointments/patient-last-name-input";
+                return "redirect:/clinic/appointments/patient-last-name-input";
             case 2:
-                return "redirect:/appointments/patient-last-name-input";
+                return "redirect:/clinic/appointments/patient-last-name-input";
             case 3:
                 return "redirect:/clinic/create-patient/has-pesel";
             default:
@@ -86,19 +86,19 @@ public class AppointmentController {
         }
     }
 
-    @GetMapping("/appointments/patient-last-name-input")
+    @GetMapping("/clinic/appointments/patient-last-name-input")
     public String inputPatientLastName(Model model) {
         model.addAttribute("lastName", new DataReader());
         return "patient-last-name";
     }
 
-    @PostMapping("/appointments/patient-last-name-input")
+    @PostMapping("/clinic/appointments/patient-last-name-input")
     public String savePatientLastNameAndRedirectToPatientSelection(@ModelAttribute DataReader data, Model model) {
         lastName = data.getData();
-        return "redirect:/appointments/patient-selection";
+        return "redirect:/clinic/appointments/patient-selection";
     }
 
-    @GetMapping("/appointments/patient-selection")
+    @GetMapping("/clinic/appointments/patient-selection")
     public String selectPatient(Model model) {
         List<Patient> patients = appointmentHandler.browsePatients(lastName);
         model.addAttribute("patients", patients);
@@ -106,7 +106,7 @@ public class AppointmentController {
         return "patients";
     }
 
-    @PostMapping("/appointments/patient-selection")
+    @PostMapping("/clinic/appointments/patient-selection")
     public String savePatientAndRedirectToDoctorSelection(@ModelAttribute DataReader data, Model model) {
         p = appointmentHandler.getPatient(data.getData());
 

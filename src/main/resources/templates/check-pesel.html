@@ -8,9 +8,12 @@
 <body th:object="${dataReader}">
 <div>
     <form action="#" th:action="@{/clinic/create-patient/has-pesel}" method="post" th:object="${dataReader}">
-        <input type="text" th:field="${dataReader.pesel}">
+        <p>Użytkownik posiada numer PESEL:</p>
         <input type="checkbox" name="data" th:checked="${dataReader.setData('true')}" value="true">
-        <input type="submit" value="Wprowadź PESEL">
+        <p>Jeżeli tak, wprowadź PESEL</p>
+        <input type="text" th:field="${dataReader.pesel}">
+
+        <input type="submit" value="Zatwierdź">
     </form>
 </div>
 </body>

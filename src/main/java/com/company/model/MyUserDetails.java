@@ -38,7 +38,6 @@ public class  MyUserDetails implements UserDetails {
     public MyUserDetails(){
     }
 
-    //*******THIS IS HARDCODED**********//
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
