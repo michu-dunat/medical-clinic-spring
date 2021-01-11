@@ -50,6 +50,8 @@ public class AppointmentController {
                 return "redirect:/clinic/appointments/patient-last-name-input";
             case 3:
                 return "redirect:/clinic/create-patient/has-pesel";
+            case 4:
+                return "redirect:/clinic/edit-patient/patient-last-name-input";
             default:
                 return "redirect:/home";
         }
@@ -114,6 +116,8 @@ public class AppointmentController {
             return "redirect:/appointments/doctor-selection";
         if (choice == 2)
             return "redirect:/appointments/appointment-selection";
+        if (choice == 4)
+            return "redirect:/clinic/edit-patient";
         return null;
     }
 

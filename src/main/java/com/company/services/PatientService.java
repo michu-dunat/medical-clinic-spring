@@ -11,12 +11,16 @@ import java.util.List;
 public class PatientService {
 
     @Autowired
-    private PatientRepository repository;
+    private PatientRepository patientRepository;
 
     public List<Patient> findAll() {
 
-        var patients = (List<Patient>) repository.findAll();
+        var patients = (List<Patient>) patientRepository.findAll();
 
         return patients;
+    }
+
+    public void updatePatientAddress(Patient patient, String address, String city, String postcode){
+        patientRepository.updateAddress(patient.getId(), address, city, postcode);
     }
 }
