@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Wybierz pacjenta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<form action="#" th:action="@{/clinic/edit-patient/patient-selection}" th:object="${selectedPatient}" method="post">
+    <table>
+        <!--        <colgroup>
+                    <col span="1" style="width: 5%;">
+                    <col span="1" style="width: 45%;">
+                    <col span="1" style="width: 45%;">
+                </colgroup>-->
+        <thead>
+        <tr>
+            <th> Imię </th>
+            <th> Nazwisko </th>
+            <th > Data urodzenia </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${patients.isEmpty()}">
+            <td colspan="2"> Nie ma takiego pacjenta. </td>
+        </tr>
+        <tr th:if="${patients.size()>0}" th:each="patient : ${patients}">
+            <td><input type="radio" name="doctorRadio" th:value="${patient.id}" th:field="${selectedPatient.data}"><span th:text="${patient.getFirstName()}"> Imię </span></td>
+            <td><span th:text="${patient.getLastName()}"> Nazwisko </span></td>
+            <td><span th:text="${patient.getBirthDate()}"> Data urodzenia </span></td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:if="${patients.isEmpty()}">
+        <input type="button" value="Cofnij" onclick="history.back()">
+    </p>
+    <p th:if="${patients.size()>0}">
+        <input type="submit" value="Wybierz"></input>
+    </p>
+</form>
+</body>
+</html>

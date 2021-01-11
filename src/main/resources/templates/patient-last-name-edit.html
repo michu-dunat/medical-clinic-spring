@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Wprowadź nazwisko pacjenta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body th:object="${lastName}">
+<div>
+    <p>
+        Wprowadź nazwisko pacjenta:
+    </p>
+    <form action="#" th:action="@{/clinic/edit-patient/patient-last-name-input}" method="post" th:object="${lastName}">
+        <input type="text" th:field="${lastName.data}">
+        <p>
+            <input type="submit" value="Przejdź dalej">
+        </p>
+    </form>
+</div>
+</body>
+</html>
