@@ -19,15 +19,6 @@ import java.time.LocalDate;
 public class AddPatientController {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private PatientRepository patientRepository;
-
-    @Autowired
     private AddAccountHandler addAccountHandler;
 
     private String pesel;
@@ -48,7 +39,6 @@ public class AddPatientController {
 
         if(dataReader.getPesel().length() > 0 && checked){
             pesel = addAccountHandler.validate(dataReader.getPesel());
-            //TODO walidacja numeru PESEL
             if (addAccountHandler.checkIfUserExistsWithGivenPESEL(pesel)){
                 return "redirect:/clinic/create-patient/already-exists";
             }else {
@@ -103,7 +93,7 @@ public class AddPatientController {
                 user = UserFactory.createDummyUser();
                 return "redirect:/appointments/success";
             }
-            else return "redirect:/failure";
+            else return "redirect:/appointments/failure";
 
         }else {
             return "redirect:/clinic/create-patient/enter-data-with-pesel";
@@ -112,8 +102,6 @@ public class AddPatientController {
 
     @GetMapping("/clinic/create-patient/enter-data-without-pesel")
     public String enterPatientDataNoPesel(Model model){
-        System.out.println(patient1.toString());
-        System.out.println("GET");
         model.addAttribute("patient", patient1);
         model.addAttribute("invalidData", invalidData);
         model.addAttribute("invalidBirthDate", invalidBirthDate);
@@ -122,7 +110,6 @@ public class AddPatientController {
 
     @PostMapping("/clinic/create-patient/enter-data-without-pesel")
     public String inputPatientDataNoPesel(@ModelAttribute Patient patient , Model model) throws Exception {
-        System.out.println("POST");
         this.patient1 = patient;
         this.patient1.setNotificationStatus(true);
         System.out.println(patient1.toString());
@@ -146,7 +133,7 @@ public class AddPatientController {
                 user = UserFactory.createDummyUser();
                 return "redirect:/appointments/success";
             }
-            else return "redirect:/failure";
+            else return "redirect:/appointments/failure";
         }
         else {
             return "redirect:/clinic/create-patient/enter-data-without-pesel";

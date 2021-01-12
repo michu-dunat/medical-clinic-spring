@@ -49,7 +49,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
                 .and().formLogin()
-                .successHandler(successHandler);
+                .successHandler(successHandler)
+                .and().logout();
     }
 
     @Bean

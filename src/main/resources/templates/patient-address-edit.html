@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Edycja adresu pacjenta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="#" th:action="@{/clinic/edit-patient}" th:object="${patient}" method="post">
+    <p>
+        <b>Ulica: </b>
+        <input type="text" th:placeholder="${patient.getAddress()}" th:field="${patient.address}">
+    </p>
+    <p>
+        <b>Miasto: </b>
+        <input type="text" th:placeholder="${patient.getCity()}" th:field="${patient.city}">
+
+    </p>
+    <p>
+        <b>Kod pocztowy: </b>
+        <input type="text" th:placeholder="${patient.getPostcode()}" th:field="${patient.postcode}">
+    </p>
+    <p>
+        <input type="submit" value="Zatwierdź">
+    </p>
+
+</form>
+</body>
+</html>
