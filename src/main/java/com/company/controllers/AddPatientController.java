@@ -61,6 +61,7 @@ public class AddPatientController {
 
     @GetMapping("/clinic/create-patient/enter-data-with-pesel")
     public String enterPatientsData(Model model){
+        System.out.println(patient1.toString());
         model.addAttribute("invalidBirthDate", invalidBirthDate);
         model.addAttribute("invalidData", invalidData);
         model.addAttribute("patient", patient1);
@@ -71,6 +72,7 @@ public class AddPatientController {
     @PostMapping("/clinic/create-patient/enter-data-with-pesel")
     public String inputPatientData(@ModelAttribute Patient patient, Model model) throws Exception {
         this.patient1 = patient;
+        this.patient1.setNotificationStatus(true);
         //this.user.setPesel(this.pesel);
         if (patient1.getFirstName().isEmpty() || patient1.getLastName().isEmpty() || patient1.getBirthDate() == null || patient1.getCity().isEmpty() || patient1.getPostcode().isEmpty() || patient1.getPhoneNumber().isEmpty()){
             invalidData = true;
@@ -109,6 +111,8 @@ public class AddPatientController {
     @PostMapping("/clinic/create-patient/enter-data-without-pesel")
     public String inputPatientDataNoPesel(@ModelAttribute Patient patient , Model model) throws Exception {
         this.patient1 = patient;
+        this.patient1.setNotificationStatus(true);
+        System.out.println(patient1.toString());
         if (patient1.getFirstName().isEmpty() || patient1.getLastName().isEmpty() || patient1.getBirthDate() == null || patient1.getCity().isEmpty() || patient1.getPostcode().isEmpty() || patient1.getPhoneNumber().isEmpty()){
             invalidData = true;
             invalidBirthDate = false;

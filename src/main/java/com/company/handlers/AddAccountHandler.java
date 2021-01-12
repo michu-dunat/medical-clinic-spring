@@ -39,8 +39,8 @@ public class AddAccountHandler {
     public boolean createAccount(Patient p, User u) throws Exception{
         try {
             u.setRole(roleRepository.getRolesById(2));
-            u.setUsername(p.getFirstName().substring(0, 3) + p.getLastName().substring(0, 3) + user.getPesel());
-            u.setPassword("" + p.getFirstName().charAt(0) + p.getLastName().charAt(0) + user.getPesel());
+            u.setUsername(p.getFirstName().substring(0, 3) + p.getLastName().substring(0, 3) + u.getPesel());
+            u.setPassword("" + p.getFirstName().charAt(0) + p.getLastName().charAt(0) + u.getPesel());
             userRepository.save(u);
             p.setUserId(u);
             patientRepository.save(p);
@@ -48,7 +48,7 @@ public class AddAccountHandler {
             userRepository.delete(u);
             patientRepository.delete(p);
             return false;
-        }
+       }
         return true;
     }
 

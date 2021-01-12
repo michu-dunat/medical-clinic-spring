@@ -19,7 +19,17 @@
             <tr><td width="2"><b>Imię:</b></td> <td><input type="text" th:field="${patient.firstName}"></td></tr>
             <tr><td width="2"><b>Nazwisko:</b></td> <td><input type="text" th:field="${patient.lastName}"></td></tr>
             <tr><td width="2"><b>Data urodzenia:</b></td> <td><input type="date" th:field="${patient.birthDate}"></td></tr>
-            <tr><td width="2"><b>Grupa krwii:</b></td> <td><input type="text" th:field="${patient.bloodType}"></td></tr>
+            <tr><td width="2"><b>Grupa krwii:</b></td> <td><select th:field="${patient.bloodType}">
+                <option th:value="null" th:text="'NULL'"></option>
+                <option th:value="'0+'" th:text="'0+'"></option>
+                <option th:value="'0-'" th:text="'0-'"></option>
+                <option th:value="'A+'" th:text="'A+'"></option>
+                <option th:value="'A-'" th:text="'A-'"></option>
+                <option th:value="'B+'" th:text="'B+'"></option>
+                <option th:value="'B-'" th:text="'B-'"></option>
+                <option th:value="'AB-'" th:text="'AB+'"></option>
+                <option th:value="'AB-'" th:text="'AB-'"></option>
+            </select> </td></tr>
             <tr><td width="2"><b>Numer telefonu</b></td> <td><input type="text" th:field="${patient.phoneNumber}"></td></tr>
             <tr><td width="2"><b>Kontaktowy numer:</b></td> <td><input type="text" th:field="${patient.contactPhone}"></td></tr>
             <tr><td width="2"><b>Email:</b></td> <td><input type="text" th:field="${patient.emailAddress}"></td></tr>
