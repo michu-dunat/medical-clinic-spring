@@ -40,14 +40,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/appointment/**").hasAnyRole("ADMIN","CLINICWORKER","LABWORKER")
-                .antMatchers("/user").hasAnyRole("ADMIN", "DOCTOR", "PATIENT", "LABWORKER", "CLINICWORKER")
-                .antMatchers("/patient").hasAnyRole("PATIENT", "ADMIN")
-                .antMatchers("/clinic-worker").hasRole("CLINICWORKER")
-                .antMatchers("/clinic/**").hasAnyRole("CLINICWORKER", "ADMIN")
-                .antMatchers("/login").permitAll()
-                .antMatchers("/").permitAll()
+//                .antMatchers("/admin").hasRole("ADMIN")
+//                .antMatchers("/appointment/**").hasAnyRole("ADMIN","CLINICWORKER","LABWORKER")
+//                .antMatchers("/user").hasAnyRole("ADMIN", "DOCTOR", "PATIENT", "LABWORKER", "CLINICWORKER")
+//                .antMatchers("/patient").hasAnyRole("PATIENT", "ADMIN")
+//                .antMatchers("/clinic-worker").hasRole("CLINICWORKER")
+//                .antMatchers("/clinic/**").hasAnyRole("CLINICWORKER", "ADMIN")
+//                .antMatchers("/login").permitAll()
+                .antMatchers("/*").permitAll()
                 .and().formLogin()
                 .successHandler(successHandler)
                 .and().logout();
